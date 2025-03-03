@@ -1,0 +1,48 @@
+{
+    "name": "containers-cicd-benchmarking-training",
+    "version": "1.0.0",
+    "description": "Introduction to Containers, CI/CD and Benchmarking",
+    "main": "reveal.js",
+    "scripts": {
+      "clean": "rm -rf html",
+      "copy": "cp -r css fonts images reveal.js videos html",
+      "slides": "./render;npm run copy",
+      "start": "http-server public/ -d -i",
+      "antora": "npx antora --stacktrace generate --cache-dir cache --clean antora-playbook.yml",
+      "preview:build": "node_modules/.bin/antora --stacktrace --fetch site-dev.yml ; node-srv -p 8010 build/site"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/feelpp/course-project"
+    },
+    "keywords": [],
+    "author": "Christophe Prud'homme",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/feelpp/github/issues"
+    },
+    "homepage": "https://github.com/feelpp/github#readme",
+    "dependencies": {
+      "@antora/cli": "^3.1",
+      "@antora/collector-extension": "^1.0.0-alpha.3",
+      "@antora/site-generator-default": "^3.1",
+      "@asciidoctor/core": "~2.2.8",
+      "@asciidoctor/tabs": "^1.0.0-beta.6",
+      "asciidoctor": "~2.2.8",
+      "asciidoctor-jupyter": "0.7.0",
+      "asciidoctor-kroki": "^0.17.0",
+      "handlebars": "^4.7.7",
+      "handlebars-utils": "^1.0.6",
+      "@feelpp/asciidoctor-extensions": "^1.0.0-rc.11"
+    },
+    "devDependencies": {
+      "broken-link-checker": "^0.7.8",
+      "http-server": "^14.1.1",
+      "write-good": "^0.13.1"
+    },
+    "keywords": [
+      "antora",
+      "asciidoc",
+      "documentation"
+    ]
+  }
