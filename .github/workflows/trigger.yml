@@ -8,6 +8,8 @@ jobs:
     if: github.repository_owner == 'coe-hidalgo2'
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v4
     - name: Antora
       run: |
         python3 -m venv .venv
