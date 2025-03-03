@@ -1,0 +1,23 @@
+name: Site Build Trigger
+on:
+  schedule:
+  - cron: '0 4 * * *'
+  workflow_dispatch:
+jobs:
+  build:
+    if: github.repository_owner == 'asciidoctor'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Antora
+      run: |
+        python3 -m venv .venv
+        source .venv/bin/activate
+        pip3 install -r requirements.txt
+        npm i
+        npm run antora
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: public # The folder the action should deploy.   
