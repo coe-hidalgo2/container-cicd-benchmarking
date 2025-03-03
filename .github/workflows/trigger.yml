@@ -12,6 +12,9 @@ jobs:
       run: |
         python3 -m venv .venv
         source .venv/bin/activate
+        pwd
+        ls -la
+        tree
         pip3 install -r requirements.txt
         npm i
         npm run antora
