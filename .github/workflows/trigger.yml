@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    if: github.repository_owner == 'asciidoctor'
+    if: github.repository_owner == 'coe-hidalgo2'
     runs-on: ubuntu-latest
     steps:
     - name: Antora
