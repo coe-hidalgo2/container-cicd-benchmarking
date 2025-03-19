@@ -1,0 +1,6 @@
+= Timeline of the training
+
+// incluide csv in attachments for antora
+|===
+include::attachment$timeline.csv[]
+|===

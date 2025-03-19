@@ -5,7 +5,7 @@ runtime:
 site:
   title: Containers CI/CD and Benchmarking Training
   url: https://containers-ci-cd-and-benchmarking.github.io/
-  start_page: ROOT::index.adoc
+  start_page: training-containers-ci-cd-and-benchmarking::index.adoc
   robots: allow
 git:
   ensure_git_suffix: false
@@ -14,55 +14,15 @@ urls:
   latest_version_segment_strategy: redirect:to
 content:
   sources:
+  - url: .
+    branches: master
+    start_path: docs
   - url: https://github.com/feelpp/course-project
     branches: master
     start_path: docs
   - url: https://github.com/feelpp/benchmarking
     branches: master
     start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor-community-docs
-#    branches: main
-#    start_paths: about, home
-#  - url: https://gitlab.eclipse.org/eclipse/asciidoc-lang/asciidoc-lang.git
-#    branches: main
-#    start_path: docs
-#    edit_url: '{web_url}/-/edit/{refname}/{path}'
-#  - url: https://github.com/asciidoctor/asciidoctor
-#    branches: v2.0.x
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor.js
-#    branches: 3.0.x, v2.2.x
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor-cli.js
-#    branches: main
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctorj
-#    branches: main, v2.5.x
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor-browser-extension
-#    branches: main
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor-gradle-plugin
-#    branches: master
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor-maven-plugin
-#    branches: main
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoclet
-#    branches: main, v1.5.x
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor-reveal.js
-#    branches: 5.2.x, maint-4.1.x
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor-pdf
-#    branches: v2.3.x, v2.2.x, v2.1.x, v2.0.x
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor-epub3
-#    branches: main
-#    start_path: docs
-#  - url: https://github.com/asciidoctor/asciidoctor-diagram
-#    branches: release
-#    start_path: docs
 antora:
   extensions:
   - '@antora/collector-extension'

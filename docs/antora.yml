@@ -1,0 +1,19 @@
+name: training-containers-ci-cd-and-benchmarking
+title: Training Containers CI/CD and Benchmarking
+version: ~
+start_page: index.adoc
+asciidoc:
+  attributes:
+    project_name: training-containers-ci-cd-and-benchmarking
+    numbered: true
+    dynamic-blocks@: ''
+    allow-uri-read: true
+    hide-uri-scheme: true
+    feelpp: Feel++
+    stem: latexmath
+    python: Python
+    cpp: C++
+ext:
+  collector:
+nav:
+  - modules/training-202503-karolina
