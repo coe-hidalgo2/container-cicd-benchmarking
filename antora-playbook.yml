@@ -63,6 +63,9 @@ content:
 #  - url: https://github.com/asciidoctor/asciidoctor-diagram
 #    branches: release
 #    start_path: docs
+antora:
+  extensions:
+  - '@antora/collector-extension'
 asciidoc:
   extensions:
   - '@asciidoctor/tabs'
