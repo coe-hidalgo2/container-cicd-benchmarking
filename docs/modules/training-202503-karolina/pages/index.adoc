@@ -33,32 +33,48 @@ This interactive segment is not only a way for us to get to know each other but 
 
 == Session Format and Logistics
 
-Our session today will include:
+Our session will include:
 
-- Brief lectures to introduce key concepts.
-- Interactive discussions to engage and address your questions.
-- Hands-on exercises to solidify the learning experience.
+* Brief lectures to introduce key concepts.
+* Interactive discussions to engage and address your questions.
+* Hands-on exercises to solidify the learning experience.
 * Q&A: 
+** Ask questions on our https://github.com/coe-hidalgo2/container-cicd-benchmarking/discussions/categories/q-a[> Github discussions]
 ** Ask questions on Slack 
 *** first use the following invitation initially https://join.slack.com/t/hidalgo2/shared_invite/zt-3231n1m7a-R44KC3C2RkwWXjAJ6SrUJw[> here,window=_blank], 
 *** then go to channel https://hidalgo2.slack.com/archives/C08JPRB0CPM[#training-containers-cicd-benchmarking,window=_blank]
-** Ask questions in the Google Doc https://docs.google.com/document/d/19zFEGlt7NXwJX03fuNByL90w7Zj-FC9FoM3Rx6hUGMI/edit?usp=sharing[> here,window=_blank].
+//** Ask questions in the Google Doc https://docs.google.com/document/d/19zFEGlt7NXwJX03fuNByL90w7Zj-FC9FoM3Rx6hUGMI/edit?usp=sharing[> here,window=_blank].
+
+=== Computing
+
+==== Supercomputer
+
+The objective of the hands-on exercises is to provide you with practical experience in containerizing  applications, setting up CI/CD workflows, and designing benchmarking pipelines and deploy on HPC systems.
+
+We will be using the following https://www.it4i.cz/en/infrastructure/karolina[> Karolina] HPC system for the exercises.
+
+The project ID for the training is `dd-24-88`.
+
+==== Runners
+
+We will also be using GitLab Runners for some of the exercises. 
+The runners are labeled with `training` and `karolina`.
+We will get back to that later.
 
 === Tools & Technical Setup
 
 For today’s exercises, we will be using **GitHub Codespaces** and **GitHub Classroom**:
-
-* **GitHub Codespaces:**  
-  - Provides a cloud-based development environment that ensures everyone has a consistent setup.
-  - Make sure you have a GitHub account and that you have accepted the invitation to use Codespaces.
-  - No local installation of development tools is necessary, though you may choose to use your local environment if preferred.
 
 * **GitHub Classroom:**  
   - Used for distributing assignments and managing code repositories.
   - Ensure you have received the GitHub Classroom invitation and have access to the relevant repositories.
   - This platform will help you submit assignments and receive feedback seamlessly during the session.
 
-* **HPC systems:**
-    - We will also be working with HPC systems for building and deploying containers and benchmarking exercises.
-    - runner labels : `training`, `karolina` (project `dd-202503`)
+* **GitHub Codespaces:**  
+  - Provides a cloud-based development environment that ensures everyone has a consistent setup.
+  - Make sure you have a GitHub account and that you have accepted the invitation to use Codespaces.
+  - No local installation of development tools is necessary, though you may choose to use your local environment if preferred.
+
+
+
 
