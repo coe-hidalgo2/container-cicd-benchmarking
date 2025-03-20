@@ -22,7 +22,8 @@ These objectives are designed to ensure that you can apply the concepts learned 
 
 == Participant Introductions
 
-We value the diversity of experience and expertise in this training. To kick off our session, we will have a round of introductions where each participant can share:
+We value the diversity of experience and expertise in this training. 
+To kick off our session, we will have a round of introductions where each participant can share:
 
 * **Name and Affiliation:** Tell us your name and the organization or institution you represent.
 * **Background in HPC and CI/CD:** Briefly describe your experience with HPC environments, containerization, and CI/CD workflows.
@@ -30,16 +31,18 @@ We value the diversity of experience and expertise in this training. To kick off
 
 This interactive segment is not only a way for us to get to know each other but also an opportunity to tailor discussions and exercises to better fit your backgrounds and expectations.
 
-== Session Format
+== Session Format and Logistics
 
 Our session today will include:
 
 - Brief lectures to introduce key concepts.
 - Interactive discussions to engage and address your questions.
 - Hands-on exercises to solidify the learning experience.
-- Q&A: 
-  - Ask questions on Slack first use the following invitation initially https://join.slack.com/t/hidalgo2/shared_invite/zt-3231n1m7a-R44KC3C2RkwWXjAJ6SrUJw[> here], then go to channel https://hidalgo2.slack.com/archives/C08JPRB0CPM[#training-containers-cicd-benchmarking]
-  - Ask questions in the Google Doc https://docs.google.com/document/d/19zFEGlt7NXwJX03fuNByL90w7Zj-FC9FoM3Rx6hUGMI/edit?usp=sharing[> here].
+* Q&A: 
+** Ask questions on Slack 
+*** first use the following invitation initially https://join.slack.com/t/hidalgo2/shared_invite/zt-3231n1m7a-R44KC3C2RkwWXjAJ6SrUJw[> here,window=_blank], 
+*** then go to channel https://hidalgo2.slack.com/archives/C08JPRB0CPM[#training-containers-cicd-benchmarking,window=_blank]
+** Ask questions in the Google Doc https://docs.google.com/document/d/19zFEGlt7NXwJX03fuNByL90w7Zj-FC9FoM3Rx6hUGMI/edit?usp=sharing[> here,window=_blank].
 
 === Tools & Technical Setup
 
