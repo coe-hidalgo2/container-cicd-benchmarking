@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     if: github.repository_owner == 'coe-hidalgo2'
-    runs-on: ubuntu-latest
+    runs-on: self-antora
     steps:
     - name: Checkout
       uses: actions/checkout@v4
