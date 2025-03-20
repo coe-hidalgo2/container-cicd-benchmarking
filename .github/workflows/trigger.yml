@@ -1,8 +1,14 @@
-name: Site Build Trigger
+name: CI/CD
 on:
   schedule:
   - cron: '0 4 * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
   build:
     if: github.repository_owner == 'coe-hidalgo2'
