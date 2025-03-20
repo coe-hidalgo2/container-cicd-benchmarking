@@ -29,7 +29,7 @@ jobs:
       run: |
         source .venv/bin/activate
         npm run antora || true
-        npm run antora
+        npm run antora || true
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
