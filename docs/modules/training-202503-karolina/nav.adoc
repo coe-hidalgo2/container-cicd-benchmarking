@@ -1,2 +1,9 @@
-* xref:index.adoc[Training 202503 Karolina Containers CICD and Benchmarking]
+* xref:index.adoc[EuroHPC Karolina 202503]
 ** xref:timeline.adoc[Timeline]
+** Containers 
+*** xref:course-project:containers:index.adoc[]
+*** xref:course-project:containers:docker/index.adoc[]
+*** xref:course-project:containers:apptainer/index.adoc[]
+** CI/CD
+
+*** xref:course-project:cicd:index.adoc[]

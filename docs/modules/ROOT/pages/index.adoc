@@ -1,0 +1,8 @@
+= Training on Containers, CI/CD, and Benchmarking
+
+Welcome to the training session on Containerization, CI/CD, and Benchmarking Solutions for HPC. 
+This session marks the beginning of our three-day journey to equip you with practical tools and methodologies to optimize and manage high-performance computing environments. 
+We are excited to have you here and look forward to engaging, interactive sessions that will build your skills and foster collaboration.
+
+
+- xref:training-202503-karolina:index.adoc[Training 202503 Karolina Containers CICD and Benchmarking]

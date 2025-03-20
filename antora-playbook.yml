@@ -4,8 +4,8 @@ runtime:
     failure_level: warn
 site:
   title: Containers CI/CD and Benchmarking Training
-  url: https://containers-ci-cd-and-benchmarking.github.io/
-  start_page: training-containers-ci-cd-and-benchmarking::index.adoc
+  url: https://coe-hidalgo2.github.io/
+  start_page: training-containers-cicd-benchmarking:training-202503-karolina:index.adoc
   robots: allow
 git:
   ensure_git_suffix: false
@@ -15,13 +15,13 @@ urls:
 content:
   sources:
   - url: .
-    branches: master
+    branches: HEAD
     start_path: docs
   - url: https://github.com/feelpp/course-project
     branches: master
     start_path: docs
   - url: https://github.com/feelpp/benchmarking
-    branches: master
+    branches: 286-use-antora-like-reference-when-manipulating-file-in-antora-filesystem
     start_path: docs
 antora:
   extensions:
@@ -33,6 +33,7 @@ asciidoc:
   attributes:
     page-component-order: '!ROOT, *, pdf-converter, epub3-converter, reveal.js-converter, maven-tools, gradle-plugin, asciidoclet, diagram-extension, browser-extension, about'
     page-pagination: ''
+    output-dir: public
     experimental: ''
     idprefix: '@'
     idseparator: '-@'
@@ -45,6 +46,7 @@ asciidoc:
     url-org: https://github.com/asciidoctor
     url-project: https://asciidoctor.org
 ui:
+  supplemental_files: ./docs/antora/supplemental-ui
   bundle:
     url: https://github.com/feelpp/antora-ui/releases/download/v0.44/ui-bundle.zip
     snapshot: true # must be set since the prod-latest tag is an alias

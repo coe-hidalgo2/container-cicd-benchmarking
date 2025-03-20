@@ -1,1 +1,58 @@
-= 
+= Welcome, Course Objectives, and Participant Introductions
+:author: Cemosis, University of Strasbourg
+:date: 2025-03-24
+:toc:
+:toc-title: Session Contents
+
+== Welcome
+
+Welcome to the training session on Containerization, CI/CD, and Benchmarking Solutions for HPC. 
+This session marks the beginning of our three-day journey to equip you with practical tools and methodologies to optimize and manage high-performance computing environments. 
+We are excited to have you here and look forward to engaging, interactive sessions that will build your skills and foster collaboration.
+
+== Course Objectives
+
+The primary objectives of this training session are to:
+
+* **Containerize HPC Applications:** Learn how to build, manage, and optimize container images using Docker and Singularity/Apptainer.
+* **Implement CI/CD Workflows:** Gain practical experience in automating builds, tests, and deployments with GitHub Actions, GitLab Runners, and JacamarCI.
+* **Design Benchmarking Pipelines:** Understand how to set up and execute benchmarking pipelines using tools like feelpp.benchmarking and reframe-hpc.
+
+These objectives are designed to ensure that you can apply the concepts learned directly to your HPC projects and research initiatives.
+
+== Participant Introductions
+
+We value the diversity of experience and expertise in this training. To kick off our session, we will have a round of introductions where each participant can share:
+
+* **Name and Affiliation:** Tell us your name and the organization or institution you represent.
+* **Background in HPC and CI/CD:** Briefly describe your experience with HPC environments, containerization, and CI/CD workflows.
+* **Expectations:** What do you hope to gain from this training session? Feel free to share specific topics or skills you’re eager to explore.
+
+This interactive segment is not only a way for us to get to know each other but also an opportunity to tailor discussions and exercises to better fit your backgrounds and expectations.
+
+== Session Format
+
+Our session today will include:
+
+- Brief lectures to introduce key concepts.
+- Interactive discussions to engage and address your questions.
+- Hands-on exercises to solidify the learning experience.
+
+=== Tools & Technical Setup
+
+For today’s exercises, we will be using **GitHub Codespaces** and **GitHub Classroom**:
+
+* **GitHub Codespaces:**  
+  - Provides a cloud-based development environment that ensures everyone has a consistent setup.
+  - Make sure you have a GitHub account and that you have accepted the invitation to use Codespaces.
+  - No local installation of development tools is necessary, though you may choose to use your local environment if preferred.
+
+* **GitHub Classroom:**  
+  - Used for distributing assignments and managing code repositories.
+  - Ensure you have received the GitHub Classroom invitation and have access to the relevant repositories.
+  - This platform will help you submit assignments and receive feedback seamlessly during the session.
+
+* **HPC systems:**
+    - We will also be working with HPC systems for building and deploying containers and benchmarking exercises.
+    - runner labels : `training`, `karolina` (project `dd-202503`)
+
