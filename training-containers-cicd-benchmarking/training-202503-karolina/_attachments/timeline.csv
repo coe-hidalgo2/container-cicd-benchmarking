@@ -1,0 +1,30 @@
+Time,Title,Instructor,Co-Instructors
+09:00 – 09:30,"Day 1: Welcome, course objectives, and participant introductions",Christophe Prud'homme,"Vincent Chabannes, Javier Cladellas, Sameer Haroon"
+09:30 – 10:45,Day 1: Overview of containerization for HPC (Docker & Singularity/Apptainer) and CI/CD basics,Christophe Prud'homme,"Vincent Chabannes, Javier Cladellas, Sameer Haroon"
+10:45 – 11:00,Day 1: Coffee Break,,
+11:00 – 12:30,Day 1: Hands-on: Building and pushing container images for HPC applications,Christophe Prud'homme,"Vincent Chabannes, Javier Cladellas, Sameer Haroon"
+12:30 – 13:30,Day 1: Lunch Break,,
+13:30 – 15:00,Day 1: Introduction to CI/CD fundamentals with GitHub Actions,Christophe Prud'homme,"Vincent Chabannes, Javier Cladellas, Sameer Haroon"
+15:00 – 15:15,Day 1: Coffee Break,,
+15:15 – 16:30,Day 1: Hands-on: Setting up a simple CI pipeline with GitHub Actions and handling containers,Christophe Prud'homme,"Vincent Chabannes, Javier Cladellas, Sameer Haroon"
+16:30 – 17:00,Day 1: Q&A and wrap-up,Christophe Prud'homme,"Vincent Chabannes, Javier Cladellas, Sameer Haroon"
+,,,
+09:00 – 09:30,Day 2: Recap of Day 1 and Q&A,Christophe Prud'homme,"Vincent Chabannes, Javier Cladellas, Sameer Haroon"
+09:30 – 11:00,Day 2: Morning: Advanced CI/CD techniques using GitHub Actions,Christophe Prud'homme,"Vincent Chabannes, Javier Cladellas, Sameer Haroon"
+11:00 – 11:15,Day 2: Coffee Break,,
+11:15 – 12:30,Day 2: Hands-on: Creating a multi-stage CI pipeline with GitHub Actions,Christophe Prud'homme,"Vincent Chabannes, Javier Cladellas, Sameer Haroon"
+12:30 – 13:30,Day 2: Lunch Break,,
+13:30 – 15:00,Day 2: Afternoon: Introduction to reframe-hpc and initial benchmark setups,Javier Cladellas,"Vincent Chabannes, Sameer Haroon, Christophe Prud'homme"
+15:00 – 15:15,Day 2: Coffee Break,,
+15:15 – 16:30,Day 2: Hands-on: Building a benchmarking pipeline with reframe-hpc,Javier Cladellas,"Vincent Chabannes, Sameer Haroon, Christophe Prud'homme"
+16:30 – 17:00,Day 2: Q&A and discussion,"Christophe Prud'homme, Javier Cladellas","Vincent Chabannes, Javier Cladellas, Christophe Prud'homme, Sameer Haroon"
+,,,
+09:00 – 09:30,Day 3: Recap of Day 2 and Q&A,Javier Cladellas,"Vincent Chabannes, Sameer Haroon, Christophe Prud'homme"
+09:30 – 11:00,Day 3: Morning: CI/CD with GitLab Runner and integration with job schedulers,Sameer Haroon,"Vincent Chabannes, Javier Cladellas"
+11:00 – 11:15,Day 3: Coffee Break,,
+11:15 – 12:30,Day 3: Hands-on: Building a CI/CD pipeline using GitLab Runner,Sameer Haroon,"Vincent Chabannes, Javier Cladellas"
+12:30 – 13:30,Day 3: Lunch Break,,
+13:30 – 15:00,Day 3: Afternoon: Introduction to feelpp.benchmarking for advanced performance analysis,Javier Cladellas,"Vincent Chabannes, Sameer Haroon"
+15:00 – 15:15,Day 3: Coffee Break,,
+15:15 – 16:30,Day 3: Hands-on: Designing multi-run benchmarking tests and generating automated reports,Javier Cladellas,"Vincent Chabannes, Sameer Haroon"
+16:30 – 17:00,"Day 3: Final Q&A, open discussion, and closing remarks","Sameer Haroon, Javier Cladellas","Vincent Chabannes, Javier Cladellas, Sameer Haroon"

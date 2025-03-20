@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash :: Containers CI/CD and Benchmarking Training</title>
+    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/containers/docker/docker-deploy.html">
+    <link rel="prev" href="docker-compose.html">
+    <link rel="next" href="../../visualisation/dash.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+            <a href="https://hidalgo2.eu"><img class="cemosis-logo" src="../../../_/img/logo-hidalgo2-color.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://eurohpc-ju.europa.eu/"><img class="cemosis-logo" src="../../../_/img/logo-eurohpc-ju.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://numpex.org/"><img class="cemosis-logo" src="../../../_/img/logo-numpex.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.economie.gouv.fr/france-2030"><img class="cemosis-logo" src="../../../_/img/logo-france-2030.jpg" alt="Containers CI/CD and Benchmarking Training"></a>
+            </div>  
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a href="https://docs.feelpp.org/">Documentation Reference</a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand"  href="https://www.cemosis.fr">
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../../_/img/logo-unistra.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../../_/img/logo-cnrs.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img class="cemosis-logo"  src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../linux/index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Command Line</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../linux/ssh/index.html">Introduction to SSH and Remote-SSH</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/ssh/ssh-setup.html">Setting Up SSH</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/ssh/ssh-commands.html">Basic SSH Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#index.adoc">Overview of VS Code</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../vscode/install.html">VS Code Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../vscode/basic-usage.html">Basic Usage and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#extensions.adoc">Extension Installation and Key Extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/remote-ssh.html">Remote SSH Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/wsl.html">WSL Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/python-jupyter.html">Python and Jupyter Extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../vscode/cheatsheet.html">VS Code Cheat Sheet</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../project-management/index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../project-management/introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../project-management/case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../project-management/agile-best-practices.html">Agile Best Practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../project-management/github.html">GitHub and Project Management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git &amp; GitHub Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git%20&%20github/git-basics.html">Git Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git%20&%20github/git-starter.html">Git Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git%20&%20github/git-repository-basics.html">Git Repository</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git%20&%20github/git-branch.html">Git Branching</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git%20&%20github/git-merges.html">Git Merge</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git%20&%20github/git-remotes.html">Git Remotes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">GitHub</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git%20&%20github/github-essentials.html">GitHub Essentials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git%20&%20github/github-start.html">GitHub Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git%20&%20github/github-collaborations.html">GitHub Collaborations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../git%20&%20github/github-actions.html">GitHub Actions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../git%20&%20github/github-actions-cmake-eigen3.html">GitHub Actions for CMake and Eigen3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../software/index.html">Sofware Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../software/package-managers.html">Package Managers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../software/repo/organization.html">Software Repository</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Introduction to Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../apptainer/index.html">Apptainer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../apptainer/tutorial.html">Tutorial</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-commands.html">Basic Docker Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-postgres.html">Running PostgreSQL with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="docker-githubaction.html">GitHub Actions with Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="docker-postgres-example.html">Setting Up PostgreSQL with Docker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-compose.html">Docker Compose</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="docker-deploy.html">Deploy services</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Visualisation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Web based</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../visualisation/dash.html">Dash Turorial</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../visualisation/hw.html">Dash Homework</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component is-current">
+        <a class="title" href="../../index.html">Course Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../../benchmarking/index.html">The Feel++ Benchmarking Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../../training-containers-cicd-benchmarking/index.html">Training Containers CI/CD and Benchmarking</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../../../training-containers-cicd-benchmarking/training-202503-karolina/index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Course Project</a></li>
+    <li><a href="../index.html">Introduction to Containers</a></li>
+    <li><a href="index.html">Docker</a></li>
+    <li><a href="docker-deploy.html">Deploy services</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/docker-deploy.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Step-by-Step Guide: Building a Dockerized Data Pipeline with PostgreSQL, Computation, and Visualization using Dash</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this practical session, you will learn how to build and deploy a Docker image that:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Injects time-series data into a PostgreSQL database.</p>
+</li>
+<li>
+<p>Enables computations on the data using Python.</p>
+</li>
+<li>
+<p>Provides a web server using Dash (Plotly) to visualize the results.</p>
+</li>
+<li>
+<p>Deploys the services using Docker Compose.</p>
+</li>
+<li>
+<p>Optionally, deploys the services to a server or cloud environment.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>1. Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ensure the following are installed on your machine:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Docker</p>
+</li>
+<li>
+<p>Docker Compose</p>
+</li>
+<li>
+<p>Python 3.x (optional for local testing)</p>
+</li>
+<li>
+<p>PostgreSQL client (optional for local testing)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step-1-setting-up-the-project-directory-structure"><a class="anchor" href="#step-1-setting-up-the-project-directory-structure"></a>2. Step 1: Setting Up the Project Directory Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a directory structure for your project with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir docker-data-pipeline
+cd docker-data-pipeline
+mkdir -p app db
+touch app/__init__.py app/data_injector.py app/compute.py app/web_visualizer.py Dockerfile docker-compose.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The project structure is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker-data-pipeline
+│
+├── app
+│   ├── __init__.py
+│   ├── data_injector.py
+│   ├── compute.py
+│   ├── web_visualizer.py
+│
+├── db
+│   └── init.sql
+│
+├── Dockerfile
+└── docker-compose.yml</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step-2-setting-up-postgresql-database-with-docker"><a class="anchor" href="#step-2-setting-up-postgresql-database-with-docker"></a>3. Step 2: Setting Up PostgreSQL Database with Docker</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, let&#8217;s set up a PostgreSQL database in Docker.</p>
+</div>
+<div class="paragraph">
+<p>Add the following lines to <code>db/init.sql</code> to create a table and define the schema for time-series data.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE time_series (
+    id SERIAL PRIMARY KEY,
+    timestamp TIMESTAMPTZ NOT NULL,
+    value NUMERIC
+);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, configure the <code>docker-compose.yml</code> file to include PostgreSQL as a service.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this setup, Docker Compose will run a PostgreSQL container, initialize the database using the <code>init.sql</code> script, and make the database available at <code>localhost:5432</code>.</p>
+</div>
+<div class="paragraph">
+<p>Run the PostgreSQL container:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker-compose up -d postgres</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check if PostgreSQL is running:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker ps</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can now interact with the database using any PostgreSQL client by connecting to <code>localhost:5432</code> with the username <code>user</code> and password <code>password</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step-3-injecting-time-series-data-into-postgresql"><a class="anchor" href="#step-3-injecting-time-series-data-into-postgresql"></a>4. Step 3: Injecting Time-Series Data into PostgreSQL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next, we will create a Python script to inject sample time-series data into the PostgreSQL database.</p>
+</div>
+<div class="paragraph">
+<p>In <code>app/data_injector.py</code>, add the following code:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>app/data_injector.py</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import psycopg2
+from datetime import datetime, timedelta
+import random
+
+def inject_data():
+    conn = psycopg2.connect(
+        dbname="timeseries_db",
+        user="user",
+        password="password",
+        host="postgres"
+    )
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM time_series;")
+
+    start_time = datetime.now()
+
+    for i in range(100):
+        timestamp = start_time - timedelta(hours=i)
+        value = random.uniform(10, 100)
+        cursor.execute("INSERT INTO time_series (timestamp, value) VALUES (%s, %s)", (timestamp, value))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+if __name__ == '__main__':
+    inject_data()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script injects 100 random time-series data points into the PostgreSQL database.
+The <code>psycopg2</code> library is used to connect to PostgreSQL.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step-4-performing-computations-on-the-data"><a class="anchor" href="#step-4-performing-computations-on-the-data"></a>5. Step 4: Performing Computations on the Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next, we&#8217;ll add a script to perform some basic computations on the injected data, such as calculating the average value over the dataset.</p>
+</div>
+<div class="paragraph">
+<p>In <code>app/compute.py</code>, add the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import psycopg2
+
+def compute_average():
+    conn = psycopg2.connect(
+        dbname="timeseries_db",
+        user="user",
+        password="password",
+        host="postgres"
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT AVG(value) FROM time_series;")
+    avg_value = cursor.fetchone()[0]
+    conn.close()
+    return avg_value
+
+if __name__ == '__main__':
+    avg = compute_average()
+    print(f"Average value: {avg}")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script retrieves the average value from the <code>time_series</code> table.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step-5-visualizing-results-using-dash-plotly"><a class="anchor" href="#step-5-visualizing-results-using-dash-plotly"></a>6. Step 5: Visualizing Results Using Dash (Plotly)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will now create a simple web server using Dash to visualize the time-series data.</p>
+</div>
+<div class="paragraph">
+<p>In <code>app/web_visualizer.py</code>, add the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import dash
+from dash import dcc, html
+import plotly.graph_objects as go
+import psycopg2
+
+def fetch_data():
+    conn = psycopg2.connect(
+        dbname="timeseries_db",
+        user="user",
+        password="password",
+        host="postgres"
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT timestamp, value FROM time_series ORDER BY timestamp;")
+    data = cursor.fetchall()
+    conn.close()
+    return data
+
+app = dash.Dash(__name__)
+
+data = fetch_data()
+timestamps, values = zip(*data)
+
+app.layout = html.Div(children=[
+    html.H1(children='Time Series Visualization'),
+
+    dcc.Graph(
+        id='time-series-plot',
+        figure={
+            'data': [
+                go.Scatter(x=timestamps, y=values, mode='lines', name='Value')
+            ],
+            'layout': go.Layout(
+                title='Time Series Data',
+                xaxis={'title': 'Time'},
+                yaxis={'title': 'Value'}
+            )
+        }
+    )
+])
+
+if __name__ == '__main__':
+    app.run_server(host='0.0.0.0', port=8050)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This script creates a Dash web server and displays a time-series plot with the data retrieved from PostgreSQL.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step-6-dockerizing-the-application"><a class="anchor" href="#step-6-dockerizing-the-application"></a>7. Step 6: Dockerizing the Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now we will create a <code>Dockerfile</code> to build the image containing the data injector, computation scripts, and Dash web server.</p>
+</div>
+<div class="paragraph">
+<p>Add the following content to the <code>Dockerfile</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Dockerfile hljs" data-lang="Dockerfile"># Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the current directory contents into the container
+COPY app /app
+
+# Install Python dependencies
+RUN pip install psycopg2 dash plotly
+
+# Expose port 8050 for the Dash web server
+EXPOSE 8050
+
+# Define the default command
+CMD ["python", "web_visualizer.py"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step-7-extending-docker-compose-yml"><a class="anchor" href="#step-7-extending-docker-compose-yml"></a>8. Step 7: Extending docker-compose.yml</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will extend the <code>docker-compose.yml</code> file to build and run our application along with PostgreSQL.</p>
+</div>
+<div class="paragraph">
+<p>Update the <code>docker-compose.yml</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8050:8050"
+    networks:
+      - app-network
+    command: bash -c "python data_injector.py &amp;&amp; python web_visualizer.py"
+
+networks:
+  app-network:
+    driver: bridge</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step-8-running-the-docker-containers"><a class="anchor" href="#step-8-running-the-docker-containers"></a>9. Step 8: Running the Docker Containers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that everything is set up, you can build and run the containers using <code>docker-compose</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker-compose up --build</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will build the Docker image, inject the time-series data, and start the Dash web server.</p>
+</div>
+<div class="paragraph">
+<p>Visit <code><a href="http://localhost:8050" class="bare">localhost:8050</a></code> in your browser to view the time-series data visualization.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="step-9-deploying-the-services"><a class="anchor" href="#step-9-deploying-the-services"></a>10. Step 9: Deploying the Services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After building and testing the services locally, the next step is to deploy them to a server or cloud environment for production use. Here&#8217;s how to deploy the Dockerized services.</p>
+</div>
+<div class="sect2">
+<h3 id="pre-deployment-checklist"><a class="anchor" href="#pre-deployment-checklist"></a>10.1. Pre-deployment Checklist</h3>
+<div class="paragraph">
+<p>Ensure the following before deployment:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A host or server where Docker and Docker Compose are installed (this could be a cloud instance like AWS EC2, a VPS, or a local server).</p>
+</li>
+<li>
+<p>Ports <code>5432</code> (PostgreSQL) and <code>8050</code> (Dash Web Application) are open and accessible from outside (check firewall rules).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deploying-locally-or-remotely"><a class="anchor" href="#deploying-locally-or-remotely"></a>10.2. Deploying Locally or Remotely</h3>
+<div class="paragraph">
+<p>If you&#8217;re deploying on your local machine or a server, follow these steps:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Transfer the Project</dt>
+<dd>
+<p>If you are deploying remotely, copy the project directory to the target server using <code>scp</code> or <code>rsync</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Example using scp to transfer files to a remote server
+scp -r docker-data-pipeline/ user@your-server:/home/user/docker-data-pipeline/</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Run the Docker Compose Command</dt>
+<dd>
+<p>Navigate to the project directory on the server and run the following command to deploy the services.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Deploying the services
+cd docker-data-pipeline
+docker-compose up -d</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Verify Deployment</dt>
+<dd>
+<p>After running the <code>docker-compose up -d</code> command, ensure that the containers are up and running.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker ps</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>You should see two services running:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The PostgreSQL container on port <code>5432</code>.</p>
+</li>
+<li>
+<p>The Dash web application container on port <code>8050</code>.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Access the Web Application</dt>
+<dd>
+<p>Open a web browser and visit your server&#8217;s IP address on port <code>8050</code> to access the Dash interface.</p>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>http://your-server-ip:8050</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-up-auto-restart-for-services"><a class="anchor" href="#setting-up-auto-restart-for-services"></a>10.3. Setting Up Auto-Restart for Services</h3>
+<div class="paragraph">
+<p>For production, you may want the containers to restart automatically if the server reboots. You can add the <code>restart: always</code> policy to your <code>docker-compose.yml</code> file to achieve this.</p>
+</div>
+<div class="paragraph">
+<p>Update <code>docker-compose.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>docker-compose.yml</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: timeseries_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    restart: always
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8050:8050"
+    networks:
+      - app-network
+    command: bash -c "python data_injector.py &amp;&amp; python web_visualizer.py"
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This ensures that both services will restart automatically when the server reboots or if they encounter any failures.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="optional-deploying-with-docker-swarm-or-kubernetes"><a class="anchor" href="#optional-deploying-with-docker-swarm-or-kubernetes"></a>10.4. Optional: Deploying with Docker Swarm or Kubernetes</h3>
+<div class="paragraph">
+<p>For larger-scale deployments or high availability, you may consider using Docker Swarm or Kubernetes to manage the services. Both platforms provide orchestration capabilities and allow scaling across multiple nodes.</p>
+</div>
+<div class="paragraph">
+<p>To deploy with Docker Swarm:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker swarm init  # Initialize the Swarm
+docker stack deploy -c docker-compose.yml data-pipeline  # Deploy the stack</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To deploy with Kubernetes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Convert the <code>docker-compose.yml</code> file to Kubernetes YAML format.</p>
+</li>
+<li>
+<p>Use <code>kubectl apply</code> to deploy the services to a Kubernetes cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-github-actions-for-continuous-deployment-optional"><a class="anchor" href="#using-github-actions-for-continuous-deployment-optional"></a>10.5. Using GitHub Actions for Continuous Deployment (Optional)</h3>
+<div class="paragraph">
+<p>You can automate the deployment process using GitHub Actions to build and push the Docker image to a container registry like Docker Hub or GitHub Container Registry. Add the following <code>.github/workflows/deploy.yml</code> file to your GitHub repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">name: Deploy Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ghcr.io/your-username/docker-data-pipeline:latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this setup, every push to the <code>main</code> branch will automatically build the Docker image and push it to GitHub Container Registry. Then, you can pull the image and deploy it to your production server.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker pull ghcr.io/your-username/docker-data-pipeline:latest
+docker-compose up -d</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion"><a class="anchor" href="#conclusion"></a>11. Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;ve now successfully deployed a Docker-based time-series data pipeline that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Injects data into PostgreSQL.</p>
+</li>
+<li>
+<p>Performs computations on the data.</p>
+</li>
+<li>
+<p>Provides a web-based visualization using Dash from Plotly.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This pipeline can be extended to handle more complex computations and scaled up using Docker Swarm, Kubernetes, or other container orchestration platforms.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="docker-compose.html">Docker Compose</a></span>
+  <span class="next"><a href="../../visualisation/dash.html">Dash Turorial</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr" style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+
+
+<script async src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

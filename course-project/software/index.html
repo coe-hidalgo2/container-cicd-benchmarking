@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Software Installation: From Package Managers to Building from Source :: Containers CI/CD and Benchmarking Training</title>
+    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/software/index.html">
+    <link rel="prev" href="../git%20&%20github/github-actions-cmake-eigen3.html">
+    <link rel="next" href="package-managers.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+            <a href="https://hidalgo2.eu"><img class="cemosis-logo" src="../../_/img/logo-hidalgo2-color.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://eurohpc-ju.europa.eu/"><img class="cemosis-logo" src="../../_/img/logo-eurohpc-ju.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://numpex.org/"><img class="cemosis-logo" src="../../_/img/logo-numpex.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.economie.gouv.fr/france-2030"><img class="cemosis-logo" src="../../_/img/logo-france-2030.jpg" alt="Containers CI/CD and Benchmarking Training"></a>
+            </div>  
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a href="https://docs.feelpp.org/">Documentation Reference</a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand"  href="https://www.cemosis.fr">
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../_/img/logo-unistra.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../_/img/logo-cnrs.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img class="cemosis-logo"  src="../../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../linux/index.html">Introduction to Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Command Line</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/editing.html">File Editing in Linux</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/shell.html">Linux Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../linux/ssh/index.html">Introduction to SSH and Remote-SSH</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/ssh-setup.html">Setting Up SSH</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/ssh-commands.html">Basic SSH Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../linux/ssh/remote-ssh-vscode.html">Remote-SSH Extension for VS Code</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#index.adoc">Overview of VS Code</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/install.html">VS Code Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/basic-usage.html">Basic Usage and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#extensions.adoc">Extension Installation and Key Extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/remote-ssh.html">Remote SSH Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/wsl.html">WSL Extension</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../vscode/python-jupyter.html">Python and Jupyter Extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../vscode/configure-vscode.html">How to Configure VS Code with .vscode</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../vscode/cheatsheet.html">VS Code Cheat Sheet</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../project-management/index.html">Introduction to Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/introduction.html">What is Project?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/project-phases.html">Phases of a Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/practical-examples.html">Practical Examples in Scientific Computing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/case-studies.html">Case Studies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/tools-gantt.html">Project Management Tools and Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/agile-best-practices.html">Agile Best Practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../project-management/github.html">GitHub and Project Management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git &amp; GitHub Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Git</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/git-basics.html">Git Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/git-starter.html">Git Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/git-repository-basics.html">Git Repository</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/git-branch.html">Git Branching</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/git-merges.html">Git Merge</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/git-remotes.html">Git Remotes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">GitHub</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/github-essentials.html">GitHub Essentials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/github-start.html">GitHub Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../git%20&%20github/github-collaborations.html">GitHub Collaborations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../git%20&%20github/github-actions.html">GitHub Actions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../git%20&%20github/github-actions-cmake-eigen3.html">GitHub Actions for CMake and Eigen3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Sofware Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="package-managers.html">Package Managers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="repo/organization.html">Software Repository</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/index.html">Introduction to Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/apptainer/index.html">Apptainer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/tutorial.html">Tutorial</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/index.html">Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-commands.html">Basic Docker Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-postgres.html">Running PostgreSQL with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/docker-githubaction.html">GitHub Actions with Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../containers/docker/docker-postgres-example.html">Setting Up PostgreSQL with Docker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-compose.html">Docker Compose</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-deploy.html">Deploy services</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Visualisation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Web based</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../visualisation/dash.html">Dash Turorial</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../visualisation/hw.html">Dash Homework</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../benchmarking/index.html">The Feel++ Benchmarking Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../training-containers-cicd-benchmarking/index.html">Training Containers CI/CD and Benchmarking</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../../training-containers-cicd-benchmarking/training-202503-karolina/index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li><a href="index.html">Sofware Installation</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/software/pages/index.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Software Installation: From Package Managers to Building from Source</h1>
+<div class="sect1">
+<h2 id="introduction-to-software-installation"><a class="anchor" href="#introduction-to-software-installation"></a>Introduction to Software Installation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="understanding-package-managers"><a class="anchor" href="#understanding-package-managers"></a>Understanding Package Managers</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>What is <code>apt</code>?</p>
+</li>
+<li>
+<p>Advantages of using package managers.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-build-from-source"><a class="anchor" href="#why-build-from-source"></a>Why Build from Source?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Latest features and updates.</p>
+</li>
+<li>
+<p>Customization and optimization.</p>
+</li>
+<li>
+<p>Situations where packages aren&#8217;t available.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="build-systems-overview"><a class="anchor" href="#build-systems-overview"></a>Build Systems Overview</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduction to build systems like Autotools and CMake.</p>
+</li>
+<li>
+<p>Differences and use cases.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-the-development-environment-with-codespaces"><a class="anchor" href="#setting-up-the-development-environment-with-codespaces"></a>Setting Up the Development Environment with Codespaces</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="introduction-to-github-codespaces"><a class="anchor" href="#introduction-to-github-codespaces"></a>Introduction to GitHub Codespaces</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>What is Codespaces?</p>
+</li>
+<li>
+<p>Benefits over traditional VMs.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getting-started"><a class="anchor" href="#getting-started"></a>Getting Started</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Create a Codespace from a repository
+git clone &lt;repository-url&gt;
+# Open it in GitHub Codespaces</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="environment-configuration"><a class="anchor" href="#environment-configuration"></a>Environment Configuration</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Install necessary extensions and tools within Codespaces.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-software-using-apt-in-codespaces"><a class="anchor" href="#installing-software-using-apt-in-codespaces"></a>Installing Software Using <code>apt</code> in Codespaces</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="using-the-terminal-in-codespaces"><a class="anchor" href="#using-the-terminal-in-codespaces"></a>Using the Terminal in Codespaces</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Accessing the terminal.</p>
+</li>
+<li>
+<p>Running <code>apt</code> commands within Codespaces.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="practical-examples"><a class="anchor" href="#practical-examples"></a>Practical Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Update and upgrade
+sudo apt update &amp;&amp; sudo apt upgrade
+
+# Install GNU Octave and Gnuplot
+sudo apt install octave gnuplot</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="building-and-installing-software-from-source"><a class="anchor" href="#building-and-installing-software-from-source"></a>Building and Installing Software from Source</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="preparation"><a class="anchor" href="#preparation"></a>Preparation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Install essential build tools
+sudo apt install build-essential</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="understanding-build-systems"><a class="anchor" href="#understanding-build-systems"></a>Understanding Build Systems</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Autotools</strong> (<code>./configure</code>, <code>make</code>, <code>make install</code>)</p>
+</li>
+<li>
+<p><strong>CMake</strong> (<code>cmake</code>, <code>make</code>, <code>make install</code>)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="general-steps-with-autotools"><a class="anchor" href="#general-steps-with-autotools"></a>General Steps with Autotools</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Download source code
+wget &lt;source-url&gt;
+
+# Unpack the archive
+tar -xzvf &lt;archive-name&gt;
+
+# Navigate to the directory
+cd &lt;source-directory&gt;
+
+# Configure the build
+./configure
+
+# Compile the source code
+make
+
+# Install the compiled program
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="general-steps-with-cmake"><a class="anchor" href="#general-steps-with-cmake"></a>General Steps with CMake</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Create a build directory
+mkdir build &amp;&amp; cd build
+
+# Configure the build
+cmake ..
+
+# Compile the source code
+make
+
+# Install the compiled program
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="hands-on-installation-exercises"><a class="anchor" href="#hands-on-installation-exercises"></a>Hands-On Installation Exercises</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="exercise-1-installing-fftw-with-autotools"><a class="anchor" href="#exercise-1-installing-fftw-with-autotools"></a>Exercise 1: Installing FFTW with Autotools</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Using apt
+sudo apt install libfftw3-dev
+
+# From source with Autotools
+wget http://www.fftw.org/fftw-3.3.10.tar.gz
+tar -xzvf fftw-3.3.10.tar.gz
+cd fftw-3.3.10
+./configure --enable-shared
+make
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exercise-2-installing-eigen-with-cmake"><a class="anchor" href="#exercise-2-installing-eigen-with-cmake"></a>Exercise 2: Installing Eigen with CMake</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Using apt
+sudo apt install libeigen3-dev
+
+# From source with CMake
+wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+tar -xzvf eigen-3.4.0.tar.gz
+cd eigen-3.4.0
+mkdir build &amp;&amp; cd build
+cmake ..
+make
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="managing-dependencies"><a class="anchor" href="#managing-dependencies"></a>Managing Dependencies</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="identifying-missing-dependencies"><a class="anchor" href="#identifying-missing-dependencies"></a>Identifying Missing Dependencies</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Reading <code>README</code> and <code>INSTALL</code> files.</p>
+</li>
+<li>
+<p>Using error messages to find missing packages.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installing-dependencies-via-apt"><a class="anchor" href="#installing-dependencies-via-apt"></a>Installing Dependencies via <code>apt</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Example: Installing Boost libraries
+sudo apt install libboost-all-dev</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="handling-dependencies-in-cmake-and-autotools"><a class="anchor" href="#handling-dependencies-in-cmake-and-autotools"></a>Handling Dependencies in CMake and Autotools</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Using <code>cmake</code> flags to specify paths.</p>
+</li>
+<li>
+<p>Configuring <code>./configure</code> with options.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="troubleshooting-installation-issues"><a class="anchor" href="#troubleshooting-installation-issues"></a>Troubleshooting Installation Issues</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="common-errors"><a class="anchor" href="#common-errors"></a>Common Errors</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Missing header files.</p>
+</li>
+<li>
+<p>Permission issues.</p>
+</li>
+<li>
+<p>Incorrect CMake configurations.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="debugging-techniques"><a class="anchor" href="#debugging-techniques"></a>Debugging Techniques</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Autotools verbose mode
+./configure --help
+make VERBOSE=1
+
+# CMake verbose mode
+cmake .. -DCMAKE_VERBOSE_MAKEFILE=ON</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="best-practices"><a class="anchor" href="#best-practices"></a>Best Practices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="system-maintenance-in-codespaces"><a class="anchor" href="#system-maintenance-in-codespaces"></a>System Maintenance in Codespaces</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Managing storage and resources.</p>
+</li>
+<li>
+<p>Keeping the environment clean.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="version-control"><a class="anchor" href="#version-control"></a>Version Control</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Cloning repositories for source builds
+git clone &lt;repository-url&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uninstallation"><a class="anchor" href="#uninstallation"></a>Uninstallation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Removing packages
+sudo apt remove [package-name]
+
+# Uninstalling source installations (Autotools)
+sudo make uninstall</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="advanced-topics"><a class="anchor" href="#advanced-topics"></a>Advanced Topics</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="customizing-builds"><a class="anchor" href="#customizing-builds"></a>Customizing Builds</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Using <code>ccmake</code> or <code>cmake-gui</code> for interactive configuration.</p>
+</li>
+<li>
+<p>Passing options to <code>./configure</code>, e.g., <code>--prefix</code>, <code>--enable/disable</code> features.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-reproducible-environments"><a class="anchor" href="#creating-reproducible-environments"></a>Creating Reproducible Environments</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Using Dockerfiles within Codespaces.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="continuous-integration"><a class="anchor" href="#continuous-integration"></a>Continuous Integration</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting up GitHub Actions to automate builds and tests.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="qa-and-discussion"><a class="anchor" href="#qa-and-discussion"></a>Q&amp;A and Discussion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Encourage students to share their experiences and address specific software installation questions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="resources"><a class="anchor" href="#resources"></a>Resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Autotools Documentation: <a href="https://www.gnu.org/software/autoconf/manual/autoconf.html">GNU Autoconf Manual</a></p>
+</li>
+<li>
+<p>CMake Documentation: <a href="https://cmake.org/documentation/">Official CMake Documentation</a></p>
+</li>
+<li>
+<p>Codespaces Resources: <a href="https://docs.github.com/en/codespaces">GitHub Codespaces Documentation</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../git%20&%20github/github-actions-cmake-eigen3.html">GitHub Actions for CMake and Eigen3</a></span>
+  <span class="next"><a href="package-managers.html">Package Managers</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr" style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>

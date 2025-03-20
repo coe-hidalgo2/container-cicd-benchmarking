@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Welcome, Course Objectives, and Participant Introductions :: Containers CI/CD and Benchmarking Training</title>
+    <link rel="canonical" href="https://coe-hidalgo2.github.io/training-containers-cicd-benchmarking/training-202503-karolina/index.html">
+    <link rel="prev" href="../index.html">
+    <link rel="next" href="timeline.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+            <a href="https://hidalgo2.eu"><img class="cemosis-logo" src="../../_/img/logo-hidalgo2-color.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://eurohpc-ju.europa.eu/"><img class="cemosis-logo" src="../../_/img/logo-eurohpc-ju.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://numpex.org/"><img class="cemosis-logo" src="../../_/img/logo-numpex.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.economie.gouv.fr/france-2030"><img class="cemosis-logo" src="../../_/img/logo-france-2030.jpg" alt="Containers CI/CD and Benchmarking Training"></a>
+            </div>  
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a href="https://docs.feelpp.org/">Documentation Reference</a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand"  href="https://www.cemosis.fr">
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../_/img/logo-unistra.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../_/img/logo-cnrs.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img class="cemosis-logo"  src="../../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="training-containers-cicd-benchmarking" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Training Containers CI/CD and Benchmarking</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">EuroHPC Karolina 202503</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="timeline.html">Timeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../course-project/containers/index.html">Introduction to Containers</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../course-project/containers/docker/index.html">Introduction to Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../course-project/containers/apptainer/index.html">Introduction to Apptainer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI/CD</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#course-project:cicd:index.adoc">course-project:cicd:index.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Training Containers CI/CD and Benchmarking</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component">
+        <a class="title" href="../../course-project/index.html">Course Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../benchmarking/index.html">The Feel++ Benchmarking Project</a>
+      </li>
+      <li class="component is-current">
+        <a class="title" href="../index.html">Training Containers CI/CD and Benchmarking</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="index.html" class="home-link is-current"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Training Containers CI/CD and Benchmarking</a></li>
+    <li><a href="index.html">EuroHPC Karolina 202503</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/coe-hidalgo2/container-cicd-benchmarking/edit/main/docs/modules/training-202503-karolina/pages/index.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Welcome, Course Objectives, and Participant Introductions</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Session Contents</div>
+<ul class="sectlevel1">
+<li><a href="#welcome">1. Welcome</a></li>
+<li><a href="#course-objectives">2. Course Objectives</a></li>
+<li><a href="#participant-introductions">3. Participant Introductions</a></li>
+<li><a href="#session-format">4. Session Format</a>
+<ul class="sectlevel2">
+<li><a href="#tools-technical-setup">4.1. Tools &amp; Technical Setup</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="welcome"><a class="anchor" href="#welcome"></a>1. Welcome</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to the training session on Containerization, CI/CD, and Benchmarking Solutions for HPC.
+This session marks the beginning of our three-day journey to equip you with practical tools and methodologies to optimize and manage high-performance computing environments.
+We are excited to have you here and look forward to engaging, interactive sessions that will build your skills and foster collaboration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="course-objectives"><a class="anchor" href="#course-objectives"></a>2. Course Objectives</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The primary objectives of this training session are to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Containerize HPC Applications:</strong> Learn how to build, manage, and optimize container images using Docker and Singularity/Apptainer.</p>
+</li>
+<li>
+<p><strong>Implement CI/CD Workflows:</strong> Gain practical experience in automating builds, tests, and deployments with GitHub Actions, GitLab Runners, and JacamarCI.</p>
+</li>
+<li>
+<p><strong>Design Benchmarking Pipelines:</strong> Understand how to set up and execute benchmarking pipelines using tools like feelpp.benchmarking and reframe-hpc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These objectives are designed to ensure that you can apply the concepts learned directly to your HPC projects and research initiatives.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="participant-introductions"><a class="anchor" href="#participant-introductions"></a>3. Participant Introductions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We value the diversity of experience and expertise in this training. To kick off our session, we will have a round of introductions where each participant can share:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name and Affiliation:</strong> Tell us your name and the organization or institution you represent.</p>
+</li>
+<li>
+<p><strong>Background in HPC and CI/CD:</strong> Briefly describe your experience with HPC environments, containerization, and CI/CD workflows.</p>
+</li>
+<li>
+<p><strong>Expectations:</strong> What do you hope to gain from this training session? Feel free to share specific topics or skills you’re eager to explore.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This interactive segment is not only a way for us to get to know each other but also an opportunity to tailor discussions and exercises to better fit your backgrounds and expectations.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="session-format"><a class="anchor" href="#session-format"></a>4. Session Format</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Our session today will include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Brief lectures to introduce key concepts.</p>
+</li>
+<li>
+<p>Interactive discussions to engage and address your questions.</p>
+</li>
+<li>
+<p>Hands-on exercises to solidify the learning experience.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="tools-technical-setup"><a class="anchor" href="#tools-technical-setup"></a>4.1. Tools &amp; Technical Setup</h3>
+<div class="paragraph">
+<p>For today’s exercises, we will be using <strong>GitHub Codespaces</strong> and <strong>GitHub Classroom</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>GitHub Codespaces:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Provides a cloud-based development environment that ensures everyone has a consistent setup.</p>
+</li>
+<li>
+<p>Make sure you have a GitHub account and that you have accepted the invitation to use Codespaces.</p>
+</li>
+<li>
+<p>No local installation of development tools is necessary, though you may choose to use your local environment if preferred.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>GitHub Classroom:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Used for distributing assignments and managing code repositories.</p>
+</li>
+<li>
+<p>Ensure you have received the GitHub Classroom invitation and have access to the relevant repositories.</p>
+</li>
+<li>
+<p>This platform will help you submit assignments and receive feedback seamlessly during the session.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>HPC systems:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>We will also be working with HPC systems for building and deploying containers and benchmarking exercises.</p>
+</li>
+<li>
+<p>runner labels : <code>training</code>, <code>karolina</code> (project <code>dd-202503</code>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../index.html">Training Containers CI/CD and Benchmarking</a></span>
+  <span class="next"><a href="timeline.html">Timeline</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr" style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
