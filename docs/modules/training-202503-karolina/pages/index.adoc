@@ -37,6 +37,9 @@ Our session today will include:
 - Brief lectures to introduce key concepts.
 - Interactive discussions to engage and address your questions.
 - Hands-on exercises to solidify the learning experience.
+- Q&A: 
+  - Ask questions on Slack first use the following invitation initially https://join.slack.com/t/hidalgo2/shared_invite/zt-3231n1m7a-R44KC3C2RkwWXjAJ6SrUJw[> here], then go to channel https://hidalgo2.slack.com/archives/C08JPRB0CPM[#training-containers-cicd-benchmarking]
+  - Ask questions in the Google Doc https://docs.google.com/document/d/19zFEGlt7NXwJX03fuNByL90w7Zj-FC9FoM3Rx6hUGMI/edit?usp=sharing[> here].
 
 === Tools & Technical Setup
 

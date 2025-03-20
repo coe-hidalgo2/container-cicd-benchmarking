@@ -21,7 +21,7 @@ content:
     branches: master
     start_path: docs
   - url: https://github.com/feelpp/benchmarking
-    branches: 286-use-antora-like-reference-when-manipulating-file-in-antora-filesystem
+    branches: master
     start_path: docs
 antora:
   extensions:
