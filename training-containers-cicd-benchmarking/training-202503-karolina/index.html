@@ -244,7 +244,8 @@ MathJax.Hub.Config({
 <li><a href="#participant-introductions">3. Participant Introductions</a></li>
 <li><a href="#session-format-and-logistics">4. Session Format and Logistics</a>
 <ul class="sectlevel2">
-<li><a href="#tools-technical-setup">4.1. Tools &amp; Technical Setup</a></li>
+<li><a href="#computing">4.1. Computing</a></li>
+<li><a href="#tools-technical-setup">4.2. Tools &amp; Technical Setup</a></li>
 </ul>
 </li>
 </ul>
@@ -312,7 +313,7 @@ To kick off our session, we will have a round of introductions where each partic
 <h2 id="session-format-and-logistics"><a class="anchor" href="#session-format-and-logistics"></a>4. Session Format and Logistics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Our session today will include:</p>
+<p>Our session will include:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -324,12 +325,14 @@ To kick off our session, we will have a round of introductions where each partic
 </li>
 <li>
 <p>Hands-on exercises to solidify the learning experience.</p>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Q&amp;A:</p>
 <div class="ulist">
 <ul>
+<li>
+<p>Ask questions on our <a href="https://github.com/coe-hidalgo2/container-cicd-benchmarking/discussions/categories/q-a">&gt; Github discussions</a></p>
+</li>
 <li>
 <p>Ask questions on Slack</p>
 <div class="ulist">
@@ -343,40 +346,41 @@ To kick off our session, we will have a round of introductions where each partic
 </ul>
 </div>
 </li>
-<li>
-<p>Ask questions in the Google Doc <a href="https://docs.google.com/document/d/19zFEGlt7NXwJX03fuNByL90w7Zj-FC9FoM3Rx6hUGMI/edit?usp=sharing" target="_blank" rel="noopener">&gt; here</a>.</p>
-</li>
-</ul>
-</div>
-</li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="tools-technical-setup"><a class="anchor" href="#tools-technical-setup"></a>4.1. Tools &amp; Technical Setup</h3>
+<h3 id="computing"><a class="anchor" href="#computing"></a>4.1. Computing</h3>
+<div class="sect3">
+<h4 id="supercomputer"><a class="anchor" href="#supercomputer"></a>4.1.1. Supercomputer</h4>
+<div class="paragraph">
+<p>The objective of the hands-on exercises is to provide you with practical experience in containerizing  applications, setting up CI/CD workflows, and designing benchmarking pipelines and deploy on HPC systems.</p>
+</div>
+<div class="paragraph">
+<p>We will be using the following <a href="https://www.it4i.cz/en/infrastructure/karolina">&gt; Karolina</a> HPC system for the exercises.</p>
+</div>
+<div class="paragraph">
+<p>The project ID for the training is <code>dd-24-88</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="runners"><a class="anchor" href="#runners"></a>4.1.2. Runners</h4>
+<div class="paragraph">
+<p>We will also be using GitLab Runners for some of the exercises.
+The runners are labeled with <code>training</code> and <code>karolina</code>.
+We will get back to that later.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tools-technical-setup"><a class="anchor" href="#tools-technical-setup"></a>4.2. Tools &amp; Technical Setup</h3>
 <div class="paragraph">
 <p>For today’s exercises, we will be using <strong>GitHub Codespaces</strong> and <strong>GitHub Classroom</strong>:</p>
 </div>
 <div class="ulist">
 <ul>
-<li>
-<p><strong>GitHub Codespaces:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Provides a cloud-based development environment that ensures everyone has a consistent setup.</p>
-</li>
-<li>
-<p>Make sure you have a GitHub account and that you have accepted the invitation to use Codespaces.</p>
-</li>
-<li>
-<p>No local installation of development tools is necessary, though you may choose to use your local environment if preferred.</p>
-</li>
-</ul>
-</div>
-</li>
 <li>
 <p><strong>GitHub Classroom:</strong></p>
 <div class="ulist">
@@ -394,14 +398,17 @@ To kick off our session, we will have a round of introductions where each partic
 </div>
 </li>
 <li>
-<p><strong>HPC systems:</strong></p>
+<p><strong>GitHub Codespaces:</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>We will also be working with HPC systems for building and deploying containers and benchmarking exercises.</p>
+<p>Provides a cloud-based development environment that ensures everyone has a consistent setup.</p>
 </li>
 <li>
-<p>runner labels : <code>training</code>, <code>karolina</code> (project <code>dd-202503</code>)</p>
+<p>Make sure you have a GitHub account and that you have accepted the invitation to use Codespaces.</p>
+</li>
+<li>
+<p>No local installation of development tools is necessary, though you may choose to use your local environment if preferred.</p>
 </li>
 </ul>
 </div>
