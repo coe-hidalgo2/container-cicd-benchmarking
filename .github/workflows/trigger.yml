@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Antora
+    - name: Antora Env
       run: |
         python3 -m venv .venv
         source .venv/bin/activate
@@ -25,8 +25,12 @@ jobs:
         tree
         pip3 install -r requirements.txt
         npm i
+    - name: Antora
+      run: |
+        source .venv/bin/activate
+        npm run antora || true
         npm run antora
-        npm run antora
+
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
