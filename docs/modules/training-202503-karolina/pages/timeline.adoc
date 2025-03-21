@@ -8,12 +8,12 @@ Below is the detailed timeline for the training:
 | Day | Time | Title | Instructor | Co-Instructors
 
 .9+^.^| Day 1 (March 24)
-| 09:00 – 09:30 | Welcome, course objectives, and participant introductions | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
-| 09:30 – 10:45 | Overview of containerization for HPC (Docker & Singularity/Apptainer) and CI/CD basics | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
+| 09:00 – 09:30 | xref:index.adoc[Welcome, course objectives, and participant introductions] | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
+| 09:30 – 10:45 | xref:course-project:containers:hpc/index.adoc[Overview of containerization for HPC (Docker & Singularity/Apptainer)] | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
 | 10:45 – 11:00 | Coffee Break | |
 | 11:00 – 12:30 | Hands-on: Building and pushing container images for HPC applications | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
 | 12:30 – 13:30 | Lunch Break | |
-| 13:30 – 15:00 | Introduction to CI/CD fundamentals with GitHub Actions | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
+| 13:30 – 15:00 | xref:course-project:cicd:index.adoc[Introduction to CI/CD fundamentals with GitHub Actions] | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
 | 15:00 – 15:15 | Coffee Break | |
 | 15:15 – 16:30 | Hands-on: Setting up a simple CI pipeline with GitHub Actions and handling containers | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
 | 16:30 – 17:00 | Q&A and wrap-up | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
