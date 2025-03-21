@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Using the Postgres Docker Official Image :: Containers CI/CD and Benchmarking Training</title>
-    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/containers/docker/hands-on/docker-postgres.html">
+    <title>Docker System Basics :: Containers CI/CD and Benchmarking Training</title>
+    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/containers/hpc/hands-on/01-docker.html">
+    <link rel="prev" href="#hpc/hands-onindex.adoc">
+    <link rel="next" href="02-mpi.html">
     <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
@@ -149,16 +151,16 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">Docker</a>
+    <a class="nav-link" href="../../docker/index.html">Docker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-overview.html">Docker Overview</a>
+    <a class="nav-link" href="../../docker/docker-overview.html">Docker Overview</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-problems-solved.html">The Problem Docker Solves</a>
+    <a class="nav-link" href="../../docker/docker-problems-solved.html">The Problem Docker Solves</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-architecture.html">Docker Architecture</a>
+    <a class="nav-link" href="../../docker/docker-architecture.html">Docker Architecture</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
@@ -181,10 +183,10 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../hpc/index.html">Containers for HPC</a>
+    <a class="nav-link" href="../index.html">Containers for HPC</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../hpc/best-practices.html">Best practices</a>
+    <a class="nav-link" href="../best-practices.html">Best practices</a>
   </li>
 </ul>
   </li>
@@ -194,13 +196,13 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Docker Hands-on</a>
+    <a class="nav-link" href="../../docker/hands-on/index.html">Docker Hands-on</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="01-getting-started.html">Getting Started with Docker</a>
+    <a class="nav-link" href="../../docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-advanced-usage.html">Advanced Docker Usage</a>
+    <a class="nav-link" href="../../docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
@@ -220,11 +222,11 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/01-docker.html">Docker</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="01-docker.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
+    <a class="nav-link" href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
   </li>
 </ul>
   </li>
@@ -269,12 +271,14 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../../index.html">Course Project</a></li>
-    <li><a href="docker-postgres.html">Using the Postgres Docker Official Image</a></li>
+    <li>Hands-on Tutorials</li>
+    <li><a href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a></li>
+    <li><a href="01-docker.html">Docker</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/hands-on/docker-postgres.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/01-docker.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -294,176 +298,312 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Using the Postgres Docker Official Image</h1>
+<h1 class="page">Docker System Basics</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#overview">Overview</a></li>
+<li><a href="#docker-system-components">Docker System Components</a></li>
+<li><a href="#docker-hello-world-example">Docker Hello World Example</a></li>
+<li><a href="#running-ubuntu-in-a-container">Running Ubuntu in a Container</a></li>
+<li><a href="#essential-docker-commands">Essential Docker Commands</a>
+<ul class="sectlevel2">
+<li><a href="#listing-containers-and-images">Listing Containers and Images</a></li>
+<li><a href="#running-containers-in-detached-mode">Running Containers in Detached Mode</a></li>
+<li><a href="#logging-into-and-out-of-docker-registries">Logging into and Out of Docker Registries</a></li>
+</ul>
+</li>
+<li><a href="#advanced-docker-usage">Advanced Docker Usage</a>
+<ul class="sectlevel2">
+<li><a href="#volumes-persistent-storage">Volumes: Persistent Storage</a></li>
+<li><a href="#docker-images-and-updates">Docker Images and Updates</a></li>
+</ul>
+</li>
+<li><a href="#docker-for-hpc">Docker for HPC</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>This section explains how to work with the Postgres Docker Official Image to set up a Postgres container quickly and efficiently.</p>
+<div class="paragraph lead">
+<p>A 30-minute hands-on session to introduce Docker fundamentals with a focus on HPC development.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="why-use-postgres-in-docker"><a class="anchor" href="#why-use-postgres-in-docker"></a>Why Use Postgres in Docker?</h2>
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>In this session, you will learn:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Quick and easy setup.</p>
+<p>The basic components of the Docker system.</p>
 </li>
 <li>
-<p>Better isolation between the application and database.</p>
+<p>How to run containers interactively and in detached mode.</p>
 </li>
 <li>
-<p>Easier to spin up in various environments (local development, testing, etc.).</p>
+<p>Key Docker commands such as <code>docker ps</code>, <code>docker images</code>, and how to manage container lifecycles.</p>
+</li>
+<li>
+<p>How Docker concepts translate to HPC containerization workflows.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="pulling-the-postgres-image"><a class="anchor" href="#pulling-the-postgres-image"></a>Pulling the Postgres Image</h2>
+<h2 id="docker-system-components"><a class="anchor" href="#docker-system-components"></a>Docker System Components</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can pull the Postgres image from Docker Hub with:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker pull postgres</code></pre>
-</div>
+<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../../_images/docker/basics-of-docker-system.png" alt="basics of docker system" title="Basics of Docker System"></a></span></p>
 </div>
 <div class="paragraph">
-<p>To use a specific version, add the version tag (e.g., <code>:14.5</code>).</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="running-postgres-in-a-container"><a class="anchor" href="#running-postgres-in-a-container"></a>Running Postgres in a Container</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To start a Postgres container with environment variables:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="using-docker-compose"><a class="anchor" href="#using-docker-compose"></a>Using Docker Compose</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can manage multiple services, including Postgres, with Docker Compose. Here is a basic <code>docker-compose.yml</code> example:</p>
-</div>
-<div class="paragraph">
-<p>This Docker Compose file defines a two-service setup using PostgreSQL and Adminer. Below is a breakdown of each section:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">services:
-  db:                                               <i class="conum" data-value="1"></i><b>(1)</b>
-    image: postgres                                 <i class="conum" data-value="2"></i><b>(2)</b>
-    environment:                                    <i class="conum" data-value="3"></i><b>(3)</b>
-      POSTGRES_PASSWORD: example                    <i class="conum" data-value="4"></i><b>(4)</b>
-    volumes:                                        <i class="conum" data-value="5"></i><b>(5)</b>
-      - pgdata:/var/lib/postgresql/data             <i class="conum" data-value="6"></i><b>(6)</b>
-
-  adminer:                                          <i class="conum" data-value="7"></i><b>(7)</b>
-    image: adminer                                  <i class="conum" data-value="8"></i><b>(8)</b>
-    ports:                                          <i class="conum" data-value="9"></i><b>(9)</b>
-      - "8080:8080"                                 <i class="conum" data-value="10"></i><b>(10)</b>
-
-volumes:
-  pgdata:                                           <i class="conum" data-value="11"></i><b>(11)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><strong>db</strong>: Defines the first service, a PostgreSQL database.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><strong>image: postgres</strong>: Uses the official PostgreSQL image from Docker Hub.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><strong>environment</strong>: Sets environment variables for the database configuration.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><strong>POSTGRES_PASSWORD</strong>: Sets the password for the PostgreSQL database.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><strong>volumes</strong>: Configures a persistent volume for data storage.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td><strong>pgdata</strong>: Maps the host volume <code>pgdata</code> to the container&#8217;s data directory, ensuring data persistence.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td><strong>adminer</strong>: Defines the second service, Adminer, a lightweight database management interface.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="8"></i><b>8</b></td>
-<td><strong>image: adminer</strong>: Uses the official Adminer image from Docker Hub.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="9"></i><b>9</b></td>
-<td><strong>ports</strong>: Maps ports between the host and the container.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="10"></i><b>10</b></td>
-<td><strong>"8080:8080"</strong>: Maps port 8080 on the host to port 8080 inside the container for accessing Adminer.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="11"></i><b>11</b></td>
-<td><strong>volumes</strong>: Defines the named volume <code>pgdata</code> for persisting PostgreSQL data.</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="title">What is Adminer?</div>
-<div class="paragraph">
-<p><strong>Adminer</strong> is a lightweight and full-featured database management tool, available as a single PHP file. It supports managing databases like <strong>PostgreSQL</strong>, <strong>MySQL</strong>, <strong>SQLite</strong>, and others, offering a user-friendly web interface for performing various database operations, such as running queries, editing tables, and managing users.</p>
-</div>
-<div class="paragraph">
-<p>In Docker environments, Adminer is commonly used alongside databases like PostgreSQL to provide a simple, browser-based management interface.</p>
-</div>
-<div class="paragraph">
-<p>For more information, visit the <a href="https://www.adminer.org/">&gt; Adminer website</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="extending-the-postgres-image"><a class="anchor" href="#extending-the-postgres-image"></a>Extending the Postgres Image</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can customize your Postgres container by using:</p>
+<p>The basic components of the Docker system are:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Environment variables</strong> for configuration (e.g., <code>POSTGRES_USER</code>, <code>POSTGRES_DB</code>).</p>
+<p><strong>Images</strong>: Blueprints of the application and its dependencies.</p>
 </li>
 <li>
-<p><strong>Docker secrets</strong> to handle sensitive data securely.</p>
+<p><strong>Containers</strong>: Running instances of images.</p>
 </li>
 <li>
-<p><strong>Initialization scripts</strong> to automate database setup.</p>
+<p><strong>Volumes</strong>: Persistent data storage.</p>
+</li>
+<li>
+<p><strong>Networks</strong>: Isolated environments for containers to communicate.</p>
+</li>
+<li>
+<p><strong>Dockerfile</strong>: A file used to create Docker images.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docker-hello-world-example"><a class="anchor" href="#docker-hello-world-example"></a>Docker Hello World Example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s start by running a simple Docker container:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run hello-world</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command pulls the <code>hello-world</code> image from Docker Hub and runs it in a container. Notice that the container runs, prints a message, and then exits.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="running-ubuntu-in-a-container"><a class="anchor" href="#running-ubuntu-in-a-container"></a>Running Ubuntu in a Container</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can start an interactive session in an Ubuntu container. In this example, we also use the <code>--rm</code> flag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -it ubuntu bash</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Explanation:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>--rm</code>: Automatically removes the container after it exits, keeping your system clean.</p>
+</li>
+<li>
+<p><code>-it</code>: Combines <code>-i</code> (interactive) and <code>-t</code> (allocate a pseudo-TTY) to enable an interactive shell session.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After running this command, you&#8217;ll have an interactive Bash shell inside the Ubuntu container.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="essential-docker-commands"><a class="anchor" href="#essential-docker-commands"></a>Essential Docker Commands</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="listing-containers-and-images"><a class="anchor" href="#listing-containers-and-images"></a>Listing Containers and Images</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>docker ps</code></strong>
+Lists all running containers.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker ps</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>docker ps -a</code></strong>
+Lists all containers, including those that have exited.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker ps -a</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>docker images</code></strong>
+Lists all available Docker images on your system.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker images</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="running-containers-in-detached-mode"><a class="anchor" href="#running-containers-in-detached-mode"></a>Running Containers in Detached Mode</h3>
+<div class="paragraph">
+<p>To run a container in the background (detached mode), use the <code>-d</code> flag:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -d ubuntu sleep 60</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Explanation:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-d</code> runs the container in detached mode.</p>
+</li>
+<li>
+<p>In this example, the container will run the <code>sleep 60</code> command and exit after 60 seconds.</p>
+</li>
+<li>
+<p>The <code>--rm</code> flag ensures the container is removed automatically when it stops.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-into-and-out-of-docker-registries"><a class="anchor" href="#logging-into-and-out-of-docker-registries"></a>Logging into and Out of Docker Registries</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>docker login</code></strong>
+Log into a Docker registry (e.g., Docker Hub or GitHub Container Registry).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker login ghcr.io -u &lt;your-username&gt; --password-stdin</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replace <code>&lt;your-username&gt;</code> with your actual username and supply your password via standard input (or use a secret in CI/CD pipelines).</p>
+</li>
+<li>
+<p><strong><code>docker logout</code></strong>
+Log out from the Docker registry.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker logout ghcr.io</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="advanced-docker-usage"><a class="anchor" href="#advanced-docker-usage"></a>Advanced Docker Usage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="volumes-persistent-storage"><a class="anchor" href="#volumes-persistent-storage"></a>Volumes: Persistent Storage</h3>
+<div class="paragraph">
+<p>Use volumes to store data that persists even after a container is removed.
+For example, run an Ubuntu container with a mounted volume from your local <code>/tmp</code> directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run --rm -it -v /tmp:/tmp ubuntu bash</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Inside the container, you can run <code>df</code> to view the mounted volume.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="docker-images-and-updates"><a class="anchor" href="#docker-images-and-updates"></a>Docker Images and Updates</h3>
+<div class="paragraph">
+<p>Docker images can be updated and modified by creating new image layers.</p>
+</div>
+<div class="paragraph">
+<p>This approach allows you to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Roll Back Updates:</strong> Easily revert to a previous image version.</p>
+</li>
+<li>
+<p><strong>Efficient Testing:</strong> Only new layers need to be pushed or pulled.</p>
+</li>
+<li>
+<p><strong>Optimized Distribution:</strong> Minimize changes, reducing download times.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../../_images/docker/changes-and-updates.png" alt="changes and updates" title="Changes and Updates"></a></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docker-for-hpc"><a class="anchor" href="#docker-for-hpc"></a>Docker for HPC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Docker serves as a foundational tool in HPC container workflows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Development &amp; Testing:</strong> Create and test HPC applications in a controlled Docker environment.</p>
+</li>
+<li>
+<p><strong>Container Conversion:</strong> Docker images can be converted to Apptainer/Singularity images for deployment on HPC clusters.</p>
+</li>
+<li>
+<p><strong>Reproducibility:</strong> Docker ensures consistent environments across different stages of development and production.</p>
 </li>
 </ul>
 </div>
@@ -473,11 +613,39 @@ volumes:
 <h2 id="conclusion"><a class="anchor" href="#conclusion"></a>Conclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Postgres Docker Official Image simplifies the deployment of PostgreSQL databases. Whether used for local development or small-scale production, Docker makes it easy to manage and extend Postgres instances.
-For more information, visit the <a href="https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/">official blog post</a>.</p>
+<p>We covered:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Basic Docker components and commands.</p>
+</li>
+<li>
+<p>Running containers interactively and in detached mode.</p>
+</li>
+<li>
+<p>Managing containers and images with <code>docker ps</code> and <code>docker images</code>.</p>
+</li>
+<li>
+<p>Logging into and out of Docker registries.</p>
+</li>
+<li>
+<p>Advanced topics including volumes and image layering.</p>
+</li>
+<li>
+<p>How Docker basics underpin HPC containerization workflows.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph center">
+<p>Questions? Let&#8217;s discuss how these tools can streamline HPC application development!</p>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a></span>
+  <span class="next"><a href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a></span>
+</nav>
 </article>
   </div>
 </main>

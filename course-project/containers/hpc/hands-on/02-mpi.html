@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Untitled :: Containers CI/CD and Benchmarking Training</title>
-    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/containers/docker/hands-on/index.html">
-    <link rel="prev" href="../../hpc/best-practices.html">
-    <link rel="next" href="01-getting-started.html">
+    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/containers/hpc/hands-on/02-mpi.html">
+    <link rel="prev" href="01-docker.html">
+    <link rel="next" href="../../../cicd/index.html">
     <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
@@ -151,16 +151,16 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">Docker</a>
+    <a class="nav-link" href="../../docker/index.html">Docker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-overview.html">Docker Overview</a>
+    <a class="nav-link" href="../../docker/docker-overview.html">Docker Overview</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-problems-solved.html">The Problem Docker Solves</a>
+    <a class="nav-link" href="../../docker/docker-problems-solved.html">The Problem Docker Solves</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-architecture.html">Docker Architecture</a>
+    <a class="nav-link" href="../../docker/docker-architecture.html">Docker Architecture</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
@@ -183,10 +183,10 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../hpc/index.html">Containers for HPC</a>
+    <a class="nav-link" href="../index.html">Containers for HPC</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../hpc/best-practices.html">Best practices</a>
+    <a class="nav-link" href="../best-practices.html">Best practices</a>
   </li>
 </ul>
   </li>
@@ -194,15 +194,15 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Hands-on Tutorials</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Docker Hands-on</a>
+    <a class="nav-link" href="../../docker/hands-on/index.html">Docker Hands-on</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="01-getting-started.html">Getting Started with Docker</a>
+    <a class="nav-link" href="../../docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-advanced-usage.html">Advanced Docker Usage</a>
+    <a class="nav-link" href="../../docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
@@ -223,10 +223,10 @@ MathJax.Hub.Config({
     <a class="nav-link" href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/01-docker.html">Docker</a>
+    <a class="nav-link" href="01-docker.html">Docker</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a>
   </li>
 </ul>
   </li>
@@ -272,12 +272,13 @@ MathJax.Hub.Config({
   <ul>
     <li><a href="../../../index.html">Course Project</a></li>
     <li>Hands-on Tutorials</li>
-    <li><a href="index.html">Docker Hands-on</a></li>
+    <li><a href="#hpc/hands-onindex.adoc">HPC Containers Hands-on</a></li>
+    <li><a href="02-mpi.html">Build, Test, Push and Deploy an MPI App</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/hands-on/index.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/02-mpi.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -297,10 +298,290 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<div class="sect1">
+<h2 id="hands-on-building-and-pushing-container-images-for-hpc-applications"><a class="anchor" href="#hands-on-building-and-pushing-container-images-for-hpc-applications"></a>Hands-on: Building and Pushing Container Images for HPC Applications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this session, you&#8217;ll learn how to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Build a Docker image for an MPI application inside a GitHub Codespace (running Ubuntu 24.04).</p>
+</li>
+<li>
+<p>Push the image to GitHub Container Registry (ghcr.io).</p>
+</li>
+<li>
+<p>Automate the build and push process using GitHub Actions CI/CD.</p>
+</li>
+<li>
+<p>Deploy the container image on the Karolina HPC system (or similar machines) using both Docker and Apptainer.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A GitHub Codespace based on Ubuntu 24.04.</p>
+</li>
+<li>
+<p>Docker installed in the Codespace.</p>
+</li>
+<li>
+<p>Access to GitHub Container Registry (with a Personal Access Token stored as the secret <code>CR_PAT</code>).</p>
+</li>
+<li>
+<p>Apptainer (or Singularity) installed on your target HPC system.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="step-1-building-an-mpi-application-in-github-codespace"><a class="anchor" href="#step-1-building-an-mpi-application-in-github-codespace"></a>Step 1: Building an MPI Application in GitHub Codespace</h3>
+<div class="paragraph">
+<p>We&#8217;ll create a simple MPI "Hello World" application in C and package it into a Docker image using Ubuntu 24.04.</p>
+</div>
+<div class="sect3">
+<h4 id="sample-mpi-application-app-c"><a class="anchor" href="#sample-mpi-application-app-c"></a>Sample MPI Application (app.c)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">#include &lt;mpi.h&gt;
+#include &lt;stdio.h&gt;
 
+int main(int argc, char** argv) {
+    MPI_Init(NULL, NULL);
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;world_size);
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;world_rank);
+    printf("Hello world from rank %d out of %d processors\n", world_rank, world_size);
+    MPI_Finalize();
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="dockerfile-for-the-mpi-application"><a class="anchor" href="#dockerfile-for-the-mpi-application"></a>Dockerfile for the MPI Application</h4>
+<div class="paragraph">
+<p>Create a file named <code>Dockerfile</code> in your repository with the following content. Notice we use Ubuntu 24.04 as the base image.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM ubuntu:24.04                            <i class="conum" data-value="1"></i><b>(1)</b>
+ENV DEBIAN_FRONTEND=noninteractive           <i class="conum" data-value="2"></i><b>(2)</b>
+RUN apt-get update &amp;&amp; apt-get install -y \
+    mpich \
+    build-essential &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*              <i class="conum" data-value="3"></i><b>(3)</b>
+COPY app.c /app/app.c                        <i class="conum" data-value="4"></i><b>(4)</b>
+WORKDIR /app                                 <i class="conum" data-value="5"></i><b>(5)</b>
+RUN mpicc -o mpi_app app.c                   <i class="conum" data-value="6"></i><b>(6)</b>
+CMD ["mpirun", "-np", "4", "./mpi_app"]      <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use Ubuntu 24.04 as the base image for a modern, stable environment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Set DEBIAN_FRONTEND to noninteractive to suppress prompts during package installation.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Update package lists, install MPICH and build-essential packages, and clean up package cache.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Copy the MPI application source code (app.c) into the /app directory in the image.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Set the working directory to /app for subsequent commands.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Compile the MPI application using mpicc, outputting the binary as 'mpi_app'.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Define the default command to run the MPI application with 4 processes using mpirun.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="building-the-docker-image-in-github-codespace"><a class="anchor" href="#building-the-docker-image-in-github-codespace"></a>Building the Docker Image in GitHub Codespace</h4>
+<div class="paragraph">
+<p>Open the terminal in your Codespace (Ubuntu 24.04) and run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Build the Docker image locally
+docker build -t ghcr.io/&lt;your-username&gt;/mpi_app:latest .
+
+# Run the image to test the MPI application
+docker run --rm ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="step-2-pushing-the-image-to-github-container-registry-ghcr-io"><a class="anchor" href="#step-2-pushing-the-image-to-github-container-registry-ghcr-io"></a>Step 2: Pushing the Image to GitHub Container Registry (ghcr.io)</h3>
+<div class="paragraph">
+<p>Once you have verified the image, push it to ghcr.io:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Log in to GitHub Container Registry using your Personal Access Token (CR_PAT)
+echo $CR_PAT | docker login ghcr.io -u &lt;your-username&gt; --password-stdin
+
+# Push the Docker image to ghcr.io
+docker push ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="step-3-automating-builds-and-pushes-with-github-actions-cicd"><a class="anchor" href="#step-3-automating-builds-and-pushes-with-github-actions-cicd"></a>Step 3: Automating Builds and Pushes with GitHub Actions CI/CD</h3>
+<div class="paragraph">
+<p>Create a GitHub Actions workflow file (e.g., <code>.github/workflows/docker-build-push.yml</code>) with the following content to automate the process:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: Docker Build and Push
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.actor }}/mpi_app:latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This workflow automatically builds and pushes your Docker image whenever changes are merged into the main branch.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="step-4-deploying-on-karolina-hpc-and-other-machines"><a class="anchor" href="#step-4-deploying-on-karolina-hpc-and-other-machines"></a>Step 4: Deploying on Karolina HPC and Other Machines</h3>
+<div class="paragraph">
+<p>On the Karolina HPC system (or another target machine), you can deploy the container image using Docker or convert it to an Apptainer image.</p>
+</div>
+<div class="sect3">
+<h4 id="deploying-with-docker"><a class="anchor" href="#deploying-with-docker"></a>Deploying with Docker</h4>
+<div class="paragraph">
+<p>Pull and run the image on the target system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Log in to GitHub Container Registry if required
+echo $CR_PAT | docker login ghcr.io -u &lt;your-username&gt; --password-stdin
+
+# Pull the latest image
+docker pull ghcr.io/&lt;your-username&gt;/mpi_app:latest
+
+# Run the container on an HPC node
+docker run --rm ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="converting-to-an-apptainer-image"><a class="anchor" href="#converting-to-an-apptainer-image"></a>Converting to an Apptainer Image</h4>
+<div class="paragraph">
+<p>If your HPC system uses Apptainer/Singularity for container execution, convert the Docker image as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># On the HPC system, use Apptainer to pull the Docker image
+apptainer pull mpi_app.sif docker://ghcr.io/&lt;your-username&gt;/mpi_app:latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can now run the Apptainer image on your HPC system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">apptainer exec mpi_app.sif mpirun -np 4 ./mpi_app</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wrap-up-and-qa"><a class="anchor" href="#wrap-up-and-qa"></a>Wrap-Up and Q&amp;A</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Review:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Built an MPI application in C and containerized it using a Dockerfile based on Ubuntu 24.04.</p>
+</li>
+<li>
+<p>Tested and pushed the Docker image to GitHub Container Registry.</p>
+</li>
+<li>
+<p>Automated the build/push process with GitHub Actions.</p>
+</li>
+<li>
+<p>Demonstrated deployment on HPC systems via Docker and Apptainer.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Discussion:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>How might this workflow be extended for more complex HPC applications?</p>
+</li>
+<li>
+<p>What additional optimizations or testing (e.g., performance benchmarks) could be integrated?</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now it&#8217;s time to experiment, ask questions, and explore how these tools can streamline HPC application deployment!</p>
+</div>
+</div>
+</div>
+</div>
 <nav class="pagination">
-  <span class="prev"><a href="../../hpc/best-practices.html">Best practices</a></span>
-  <span class="next"><a href="01-getting-started.html">Getting Started with Docker</a></span>
+  <span class="prev"><a href="01-docker.html">Docker</a></span>
+  <span class="next"><a href="../../../cicd/index.html">Introduction to CI/CD fundamentals with GitHub Actions </a></span>
 </nav>
 </article>
   </div>
