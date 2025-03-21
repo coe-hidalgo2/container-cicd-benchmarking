@@ -3,5 +3,9 @@
 ** Containers 
 *** xref:course-project:containers:hpc/index.adoc[Overview of containerization]
 *** xref:course-project:containers:hpc/best-practices.adoc[Best Practices]
+*** Hands-on
+**** xref:course-project:containers:hpc/hands-on/index.adoc[HPC Containers Hands-on]
+**** xref:course-project:containers:hpc/hands-on/01-docker.adoc[Docker]
+**** xref:course-project:containers:hpc/hands-on/02-mpi.adoc[Doccker and HPC]
 ** CI/CD 
-*** xref:course-project:cicd:index.adoc[]
+*** xref:course-project:cicd:index.adoc[CI/CD Fundamentals using GitHub Actions]
