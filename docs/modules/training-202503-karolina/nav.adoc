@@ -1,11 +1,15 @@
 * xref:index.adoc[EuroHPC Karolina 202503]
 ** xref:timeline.adoc[Timeline]
 ** Containers 
-*** xref:course-project:containers:hpc/index.adoc[Overview of containerization]
+*** xref:course-project:containers:hpc/index.adoc[Containers]
+*** xref:course-project:containers:hpc/cicd.adoc[CI/CD]
 *** xref:course-project:containers:hpc/best-practices.adoc[Best Practices]
-*** Hands-on
-**** xref:course-project:containers:hpc/hands-on/index.adoc[HPC Containers Hands-on]
-**** xref:course-project:containers:hpc/hands-on/01-docker.adoc[Docker]
-**** xref:course-project:containers:hpc/hands-on/02-mpi.adoc[Doccker and HPC]
-** CI/CD 
-*** xref:course-project:cicd:index.adoc[CI/CD Fundamentals using GitHub Actions]
+** Hands-on
+*** xref:course-project:containers:hpc/hands-on/00-classroom.adoc[C3B Classroom Setup]
+*** xref:course-project:containers:hpc/hands-on/01-docker.adoc[Docker]
+*** xref:course-project:containers:hpc/hands-on/02-apptainer.adoc[Apptainer]
+*** xref:course-project:containers:hpc/hands-on/03-docker-mpi.adoc[Docker and MPI]
+*** xref:course-project:containers:hpc/hands-on/03-cicd-githubactions.adoc[CI/CD with GitHub Actions]
+*** xref:course-project:containers:hpc/hands-on/04-docker-cicd-app.adoc[CI/CD Docker Job]
+*** xref:course-project:containers:hpc/hands-on/04-apptainer-cicd-app.adoc[CI/CD Apptainer Job]
+*** xref:course-project:containers:hpc/hands-on/05-deploy.adoc[Deploy with Apptainer]

@@ -25,6 +25,10 @@ USERS=(
   "songbin6280"
   "antoine-morvan"
   "karthikeya-ms"
+  "csccva"
+  "yes"
+  "edwincg"
+  "crosorrow"
 )
 
 for USER in "${USERS[@]}"; do

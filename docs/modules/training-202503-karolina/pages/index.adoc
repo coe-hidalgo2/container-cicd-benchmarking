@@ -10,6 +10,8 @@ Welcome to the training session on Containerization, CI/CD, and Benchmarking Sol
 This session marks the beginning of our three-day journey to equip you with practical tools and methodologies to optimize and manage high-performance computing environments. 
 We are excited to have you here and look forward to engaging, interactive sessions that will build your skills and foster collaboration.
 
+https://cesnet.zoom.us/j/98878753272?pwd=Ozv8CYzOr0j1vfQ1WabJoHVBfTOClY.1[> Connect to Zoom,window=_blank]
+
 == Course Objectives
 
 The primary objectives of this training session are to:
