@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Advanced Docker Usage :: Containers CI/CD and Benchmarking Training</title>
-    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/containers/docker/hands-on/02-advanced-usage.html">
-    <link rel="prev" href="01-getting-started.html">
-    <link rel="next" href="#docker/hands-on/docker-githubaction.adoc">
+    <title>Hands-on: Deploying Apptainer Images on HPC Environments :: Containers CI/CD and Benchmarking Training</title>
+    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/containers/hpc/hands-on/05-deploy.html">
+    <link rel="prev" href="04-apptainer-cicd-app.html">
     <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../_/css/site.css">
 <link rel="icon" href="../../../../_/img/favicon.ico" type="image/x-icon">
@@ -151,16 +150,16 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">Docker</a>
+    <a class="nav-link" href="../../docker/index.html">Docker</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-overview.html">Docker Overview</a>
+    <a class="nav-link" href="../../docker/docker-overview.html">Docker Overview</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-problems-solved.html">The Problem Docker Solves</a>
+    <a class="nav-link" href="../../docker/docker-problems-solved.html">The Problem Docker Solves</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../docker-architecture.html">Docker Architecture</a>
+    <a class="nav-link" href="../../docker/docker-architecture.html">Docker Architecture</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
@@ -183,13 +182,13 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../hpc/index.html">Containers for HPC</a>
+    <a class="nav-link" href="../index.html">Containers for HPC</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../hpc/cicd.html">CI/CD for HPC</a>
+    <a class="nav-link" href="../cicd.html">CI/CD for HPC</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../hpc/best-practices.html">Best practices</a>
+    <a class="nav-link" href="../best-practices.html">Best practices</a>
   </li>
 </ul>
   </li>
@@ -199,13 +198,13 @@ MathJax.Hub.Config({
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Docker Hands-on</a>
+    <a class="nav-link" href="../../docker/hands-on/index.html">Docker Hands-on</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="01-getting-started.html">Getting Started with Docker</a>
+    <a class="nav-link" href="../../docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="02-advanced-usage.html">Advanced Docker Usage</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
@@ -223,28 +222,28 @@ MathJax.Hub.Config({
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../hpc/hands-on/00-classroom.html">C3B Classroom Setup</a>
+    <a class="nav-link" href="00-classroom.html">C3B Classroom Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/01-docker.html">Docker</a>
+    <a class="nav-link" href="01-docker.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/02-apptainer.html">Apptainer</a>
+    <a class="nav-link" href="02-apptainer.html">Apptainer</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/03-docker-mpi.html">Docker and MPI</a>
+    <a class="nav-link" href="03-docker-mpi.html">Docker and MPI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+    <a class="nav-link" href="03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/04-docker-cicd-app.html">CI/CD Docker Job</a>
+    <a class="nav-link" href="04-docker-cicd-app.html">CI/CD Docker Job</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
+    <a class="nav-link" href="04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../hpc/hands-on/05-deploy.html">Deploy with Apptainer</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="05-deploy.html">Deploy with Apptainer</a>
   </li>
 </ul>
   </li>
@@ -283,13 +282,13 @@ MathJax.Hub.Config({
   <ul>
     <li><a href="../../../index.html">Course Project</a></li>
     <li>Hands-on Tutorials</li>
-    <li><a href="index.html">Docker Hands-on</a></li>
-    <li><a href="02-advanced-usage.html">Advanced Docker Usage</a></li>
+    <li><a href="00-classroom.html">C3B Classroom Setup</a></li>
+    <li><a href="05-deploy.html">Deploy with Apptainer</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/hands-on/02-advanced-usage.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/hpc/hands-on/05-deploy.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -309,37 +308,193 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Advanced Docker Usage</h1>
+<h1 class="page">Hands-on: Deploying Apptainer Images on HPC Environments</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#overview">Overview</a></li>
+<li><a href="#the-deploy-workflow">The Deploy Workflow</a></li>
+<li><a href="#triggering-the-deploy-workflow-automatically">Triggering the Deploy Workflow Automatically</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>This session demonstrates how to deploy your Apptainer image to run a parallel MPI job on two environments: a local runner (<code>self-ubuntu-24.04</code>) and the Karolina HPC system. We will also show how to automatically trigger the deploy job when the Apptainer image is updated.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="volumes-persistent-storage"><a class="anchor" href="#volumes-persistent-storage"></a>Volumes: Persistent Storage</h2>
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Use volumes to store data that persists even after a container is removed. Here’s an example of running an Ubuntu container with a mounted volume from your local <code>/tmp</code> directory:</p>
+<p>In this session, you will learn:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>How to configure a GitHub Actions workflow (<code>deploy.yml</code>) that uses a matrix strategy to run on both <code>self-ubuntu-24.04</code> and <code>karolina</code>.</p>
+</li>
+<li>
+<p>How to pull, inspect, and run the Apptainer image on these environments.</p>
+</li>
+<li>
+<p>How to trigger the deploy workflow automatically from another job (e.g., when the Apptainer image is pushed).</p>
+</li>
+<li>
+<p>How to monitor and run parallel jobs in HPC using Apptainer and MPI.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-deploy-workflow"><a class="anchor" href="#the-deploy-workflow"></a>The Deploy Workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below is the complete <code>deploy.yml</code> file used to deploy the Apptainer image:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">docker run -it -v /tmp:/tmp ubuntu bash</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: Deploy                                     <i class="conum" data-value="1"></i><b>(1)</b>
+
+on:
+  workflow_dispatch:                               <i class="conum" data-value="2"></i><b>(2)</b>
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        runs-on: [self-ubuntu-24.04, karolina]     <i class="conum" data-value="3"></i><b>(3)</b>
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - name: Checkout Repository                <i class="conum" data-value="4"></i><b>(4)</b>
+        uses: actions/checkout@v4
+
+      - name: Create sif filename                <i class="conum" data-value="5"></i><b>(5)</b>
+        run: |
+          sif=$(basename "${{ github.repository }}.sif")
+          echo "SIF_FILENAME=$sif" &gt;&gt; $GITHUB_ENV
+
+      - name: Set APPTAINER_CMD                   <i class="conum" data-value="6"></i><b>(6)</b>
+        run: |
+          if [ "${{ matrix.runs-on }}" == "karolina" ]; then
+            apptainer_cmd=apptainer
+          else
+            apptainer_cmd=/opt/apptainer/v1.4.0/apptainer/bin/apptainer
+          fi
+          echo "Using apptainer command: $apptainer_cmd"
+          echo "APPTAINER_CMD=$apptainer_cmd" &gt;&gt; $GITHUB_ENV
+
+      - name: PULL Apptainer SIF                <i class="conum" data-value="7"></i><b>(7)</b>
+        run: |
+          # Pull the SIF file from GHCR
+          $APPTAINER_CMD pull -F $SIF_FILENAME oras://ghcr.io/${{ github.repository }}:solution-sif
+          # Inspect the SIF file to verify its contents
+          $APPTAINER_CMD inspect $SIF_FILENAME
+
+      - name: Run Container on self-ubuntu-24.04  <i class="conum" data-value="8"></i><b>(8)</b>
+        if: matrix.runs-on == 'self-ubuntu-24.04'
+        run: |
+          # Run the containerized application using mpirun
+          mpirun -np 4 $APPTAINER_CMD run $SIF_FILENAME myapp
+
+      - name: Run Container on Karolina           <i class="conum" data-value="9"></i><b>(9)</b>
+        if: matrix.runs-on == 'karolina'
+        run: |
+          # Use a helper script (job_monitor.sh) to submit and monitor the job on Karolina
+          bash job_monitor.sh $SIF_FILENAME</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>You can view the volume by running the <code>df</code> command inside the container.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>Workflow Name:</strong> A descriptive title for the deploy workflow.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>Manual Trigger:</strong> The workflow is triggered manually via Workflow Dispatch.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><strong>Matrix Strategy:</strong> The job runs on two environments: <code>self-ubuntu-24.04</code> and <code>karolina</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><strong>Checkout Step:</strong> Clones your repository into the workflow environment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><strong>Create SIF Filename:</strong> Generates the SIF filename based on the repository name and saves it to the environment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><strong>Set Apptainer Command:</strong> Determines which Apptainer command to use based on the environment (using a module on Karolina or a local path on self‑ubuntu‑24.04) and saves it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><strong>Pull and Inspect SIF:</strong> Pulls the Apptainer SIF from GHCR and inspects it to verify the conversion.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><strong>Run on Self-Ubuntu:</strong> Uses <code>mpirun</code> to execute the application inside the container on the self‑ubuntu‑24.04 runner.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td><strong>Run on Karolina:</strong> Invokes a helper script (<code>job_monitor.sh</code>) to submit and monitor the job on Karolina.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="docker-images-and-updates"><a class="anchor" href="#docker-images-and-updates"></a>Docker Images and Updates</h2>
+<h2 id="triggering-the-deploy-workflow-automatically"><a class="anchor" href="#triggering-the-deploy-workflow-automatically"></a>Triggering the Deploy Workflow Automatically</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Docker images can be updated and modified easily by creating new image layers. The ability to roll back and forward to different layers simplifies testing and updates.</p>
+<p>To streamline the workflow, you can add a step in your <code>build_apptainer</code> job to trigger the deploy workflow as soon as the Apptainer image is pushed. For example, in your <code>build_apptainer</code> job add the step below at the end:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">    - name: Trigger Deployment                <i class="conum" data-value="10"></i><b>(10)</b>
+        run: |
+          # This step triggers the deploy workflow automatically.
+          # It can be invoked from the build_apptainer job after a successful image push.
+          gh workflow run deploy.yml</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.docker.com/"><img src="../../_images/docker/changes-and-updates.png" alt="changes and updates" title="Changes and Updates"></a></span></p>
+<p>This command triggers the <code>deploy.yml</code> workflow on the <code>solution</code> branch, ensuring that both the <code>self-ubuntu-24.04</code> and <code>karolina</code> jobs are executed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion"><a class="anchor" href="#conclusion"></a>Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This hands‑on session has demonstrated:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>How to set up a GitHub Actions deploy workflow using a matrix to target different environments.</p>
+</li>
+<li>
+<p>How to pull, inspect, and run an Apptainer SIF image on both a local runner and an HPC system.</p>
+</li>
+<li>
+<p>How to automatically trigger the deploy workflow from another job.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph center">
+<p>Questions? Let&#8217;s discuss how to integrate these deployment steps into your HPC CI/CD pipeline!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="01-getting-started.html">Getting Started with Docker</a></span>
-  <span class="next"><a href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a></span>
+  <span class="prev"><a href="04-apptainer-cicd-app.html">CI/CD Apptainer Job</a></span>
 </nav>
 </article>
   </div>
