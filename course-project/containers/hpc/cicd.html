@@ -313,7 +313,7 @@ MathJax.Hub.Config({
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#overview">Overview</a></li>
-<li><a href="#introduction-the-cicd-problem-30-min">Introduction: The CI/CD Problem (30 min)</a>
+<li><a href="#introduction-the-cicd-problem">Introduction: The CI/CD Problem</a>
 <ul class="sectlevel2">
 <li><a href="#the-software-development-challenge">The Software Development Challenge</a></li>
 <li><a href="#hpc-considerations-what-does-it-mean-for-hpc-and-how-does-it-help">HPC Considerations: What Does It Mean for HPC and How Does It Help?</a></li>
@@ -321,21 +321,20 @@ MathJax.Hub.Config({
 <li><a href="#cicd-platform-choices-and-development-platforms">CI/CD Platform Choices and Development Platforms</a></li>
 </ul>
 </li>
-<li><a href="#github-actions-overview-and-fundamentals-40-min">GitHub Actions: Overview and Fundamentals (40 min)</a>
+<li><a href="#github-actions-overview-and-fundamentals">GitHub Actions: Overview and Fundamentals</a>
 <ul class="sectlevel2">
 <li><a href="#what-is-github-actions">What is GitHub Actions?</a></li>
 <li><a href="#a-sample-github-actions-workflow">A Sample GitHub Actions Workflow</a></li>
 <li><a href="#benefits-of-using-github-actions">Benefits of Using GitHub Actions</a></li>
 </ul>
 </li>
-<li><a href="#3-containers-in-cicd-15-min">3. Containers in CI/CD (15 min)</a>
+<li><a href="#3-containers-in-cicd">3. Containers in CI/CD</a>
 <ul class="sectlevel2">
 <li><a href="#why-use-containers-in-cicd">Why Use Containers in CI/CD?</a></li>
 <li><a href="#using-containers-with-github-actions">Using Containers with GitHub Actions</a></li>
 </ul>
 </li>
-<li><a href="#demo-hands-on-optional-5-min">Demo / Hands-on (Optional) (5 min)</a></li>
-<li><a href="#qa-and-discussion-5-min">Q&amp;A and Discussion (5 min)</a></li>
+<li><a href="#qa-and-discussion">Q&amp;A and Discussion</a></li>
 <li><a href="#summary-and-closing">Summary and Closing</a></li>
 </ul>
 </div>
@@ -374,7 +373,7 @@ MathJax.Hub.Config({
 </div>
 </div>
 <div class="sect1">
-<h2 id="introduction-the-cicd-problem-30-min"><a class="anchor" href="#introduction-the-cicd-problem-30-min"></a>Introduction: The CI/CD Problem (30 min)</h2>
+<h2 id="introduction-the-cicd-problem"><a class="anchor" href="#introduction-the-cicd-problem"></a>Introduction: The CI/CD Problem</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="the-software-development-challenge"><a class="anchor" href="#the-software-development-challenge"></a>The Software Development Challenge</h3>
@@ -683,7 +682,7 @@ This section highlights that the right CI/CD tool depends on your existing devel
 </div>
 </div>
 <div class="sect1">
-<h2 id="github-actions-overview-and-fundamentals-40-min"><a class="anchor" href="#github-actions-overview-and-fundamentals-40-min"></a>GitHub Actions: Overview and Fundamentals (40 min)</h2>
+<h2 id="github-actions-overview-and-fundamentals"><a class="anchor" href="#github-actions-overview-and-fundamentals"></a>GitHub Actions: Overview and Fundamentals</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="what-is-github-actions"><a class="anchor" href="#what-is-github-actions"></a>What is GitHub Actions?</h3>
@@ -737,7 +736,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -789,7 +788,7 @@ jobs:
 </div>
 </div>
 <div class="sect1">
-<h2 id="3-containers-in-cicd-15-min"><a class="anchor" href="#3-containers-in-cicd-15-min"></a>3. Containers in CI/CD (15 min)</h2>
+<h2 id="3-containers-in-cicd"><a class="anchor" href="#3-containers-in-cicd"></a>3. Containers in CI/CD</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="why-use-containers-in-cicd"><a class="anchor" href="#why-use-containers-in-cicd"></a>Why Use Containers in CI/CD?</h3>
@@ -886,22 +885,7 @@ jobs:
 </div>
 </div>
 <div class="sect1">
-<h2 id="demo-hands-on-optional-5-min"><a class="anchor" href="#demo-hands-on-optional-5-min"></a>Demo / Hands-on (Optional) (5 min)</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Live demonstration of a GitHub Actions workflow.</p>
-</li>
-<li>
-<p>Experiment with customizing workflows and integrating containerized builds.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="qa-and-discussion-5-min"><a class="anchor" href="#qa-and-discussion-5-min"></a>Q&amp;A and Discussion (5 min)</h2>
+<h2 id="qa-and-discussion"><a class="anchor" href="#qa-and-discussion"></a>Q&amp;A and Discussion</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
