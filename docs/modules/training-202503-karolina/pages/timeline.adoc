@@ -20,11 +20,11 @@ Below is the detailed timeline for the training:
 
 .9+^.^| Day 2 (March 25)
 | 09:00 – 09:30 | Recap of Day 1 and Q&A | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
-| 09:30 – 11:00 | Morning: Advanced CI/CD techniques using GitHub Actions | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
+| 09:30 – 11:00 | xref:course-project:cicd:index.adoc[Advanced Topics and CI/CD techniques using GitHub Actions] | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
 | 11:00 – 11:15 | Coffee Break | |
 | 11:15 – 12:30 | Hands-on: Creating a multi-stage CI pipeline with GitHub Actions | Christophe Prud'homme | Vincent Chabannes, Javier Cladellas, Sameer Haroon
 | 12:30 – 13:30 | Lunch Break | |
-| 13:30 – 15:00 | Afternoon: Introduction to reframe-hpc and initial benchmark setups | Javier Cladellas | Vincent Chabannes, Sameer Haroon, Christophe Prud'homme
+| 13:30 – 15:00 | xref:benchmarking:training:index.adoc[Introduction to reframe-hpc and initial benchmark setups] | Javier Cladellas | Vincent Chabannes, Sameer Haroon, Christophe Prud'homme
 | 15:00 – 15:15 | Coffee Break | |
 | 15:15 – 16:30 | Hands-on: Building a benchmarking pipeline with reframe-hpc | Javier Cladellas | Vincent Chabannes, Sameer Haroon, Christophe Prud'homme
 | 16:30 – 17:00 | Q&A and discussion | Christophe Prud'homme, Javier Cladellas | Vincent Chabannes, Javier Cladellas, Christophe Prud'homme, Sameer Haroon
