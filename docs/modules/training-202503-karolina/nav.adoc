@@ -1,10 +1,13 @@
 * xref:index.adoc[EuroHPC Karolina 202503]
 ** xref:timeline.adoc[Timeline]
-** 
+** Lectures
 *** xref:course-project:containers:hpc/index.adoc[Containers]
 *** xref:course-project:containers:hpc/cicd.adoc[CI/CD]
+*** xref:course-project:containers:hpc/advanced.adoc[CICD Advanced Topics]
+*** xref:benchmarking:training:index.adoc[Benchmarking]
+
+** Q&A, Recap
 *** xref:course-project:containers:hpc/best-practices.adoc[Best Practices]
-*** xref:hpc/advanced.adoc[Advanced Topics]
 
 ** Hands-on
 *** xref:course-project:containers:hpc/hands-on/00-classroom.adoc[C3B Classroom Setup]
