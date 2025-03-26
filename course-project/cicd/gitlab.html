@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CI/CD through Gitlab :: Containers CI/CD and Benchmarking Training</title>
+    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/cicd/gitlab.html">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+            <a href="https://hidalgo2.eu"><img class="cemosis-logo" src="../../_/img/logo-hidalgo2-color.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://eurohpc-ju.europa.eu/"><img class="cemosis-logo" src="../../_/img/logo-eurohpc-ju.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://numpex.org/"><img class="cemosis-logo" src="../../_/img/logo-numpex.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.economie.gouv.fr/france-2030"><img class="cemosis-logo" src="../../_/img/logo-france-2030.jpg" alt="Containers CI/CD and Benchmarking Training"></a>
+            </div>  
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a href="https://docs.feelpp.org/">Documentation Reference</a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand"  href="https://www.cemosis.fr">
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../_/img/logo-unistra.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../_/img/logo-cnrs.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img class="cemosis-logo"  src="../../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/index.html">Introduction to Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/index.html">Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-overview.html">Docker Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-problems-solved.html">The Problem Docker Solves</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/docker-architecture.html">Docker Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/docker-hpc.adoc">Installing Docker</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/apptainer/index.html">Apptainer</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/apptainer-install.html">Installing Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/apptainer/tutorial.html">Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/hpc/index.html">Containers for HPC</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/hpc/cicd.html">CI/CD for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/hpc/best-practices.html">Best practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../containers/hpc/advanced.html">Advanced Topics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Hands-on Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/docker/hands-on/index.html">Docker Hands-on</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/01-getting-started.html">Getting Started with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/docker/hands-on/02-advanced-usage.html">Advanced Docker Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-githubaction.adoc">GitHub Actions with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-postgres-example.adoc">Setting Up PostgreSQL with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-compose.adoc">Docker Compose</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#docker/hands-on/docker-deploy.adoc">Deploy services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../containers/hpc/hands-on/00-classroom.html">C3B Classroom Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/01-docker.html">Docker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/02-apptainer.html">Apptainer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/03-docker-mpi.html">Docker and MPI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/03-cicd-githubactions.html">CI/CD with GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/04-docker-cicd-app.html">CI/CD Docker Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/04-apptainer-cicd-app.html">CI/CD Apptainer Job</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containers/hpc/hands-on/05-deploy.html">Deploy with Apptainer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component is-current">
+        <a class="title" href="../index.html">Course Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../benchmarking/index.html">The Feel++ Benchmarking Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../training-containers-cicd-benchmarking/index.html">Training Containers CI/CD and Benchmarking</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../../training-containers-cicd-benchmarking/training-202503-karolina/index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Course Project</a></li>
+    <li><a href="gitlab.html">CI/CD through Gitlab</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/cicd/pages/gitlab.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">CI/CD through Gitlab</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#review-of-cicd-as-a-concept">Review of CI/CD as a concept</a></li>
+<li><a href="#overview-of-gitlab-ci">Overview of Gitlab CI</a></li>
+<li><a href="#karlina-and-it4is-cicd-setup">Karlina and IT4I&#8217;s CI/CD setup</a></li>
+<li><a href="#a-comparison-of-gitlab-ci-and-github-actions">A comparison of Gitlab CI and Github Actions</a>
+<ul class="sectlevel2">
+<li><a href="#what-is-a-github-action">What is a Github Action?</a></li>
+</ul>
+</li>
+<li><a href="#gitlab-yaml-syntax">Gitlab YAML syntax</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="review-of-cicd-as-a-concept"><a class="anchor" href="#review-of-cicd-as-a-concept"></a>Review of CI/CD as a concept</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CI (Continuous Integration)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Is your code good?</p>
+</li>
+<li>
+<p>earlier you run tests, sooner you find problems</p>
+</li>
+<li>
+<p>makes sure that any file edits made integrate well with the stable code base</p>
+<div class="ulist">
+<ul>
+<li>
+<p>functional tests</p>
+</li>
+<li>
+<p>security scans</p>
+</li>
+<li>
+<p>code quality scans</p>
+</li>
+<li>
+<p>performance tests</p>
+</li>
+<li>
+<p>license scanning</p>
+</li>
+<li>
+<p>fuzz testing</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>gives everyone on the team an understanding of the state of the
+software</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">CD (Continuous Delivery / Continous Deployment)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>more ambiguous</p>
+</li>
+<li>
+<p>finding out where your code should go</p>
+<div class="ulist">
+<ul>
+<li>
+<p>and putting it there</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>make releases "boring"</p>
+</li>
+<li>
+<p>different environments</p>
+<div class="ulist">
+<ul>
+<li>
+<p>testing/development environments (run against feature branches etc)</p>
+</li>
+<li>
+<p>staging/pre-prodcution (run against main)</p>
+</li>
+<li>
+<p>production envs (run against tags)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>continuous delivery</p>
+<div class="ulist">
+<ul>
+<li>
+<p>automatic deploy to test and dev envs</p>
+</li>
+<li>
+<p>not automatically deployed to production without manual approval</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>continuous deployment</p>
+<div class="ulist">
+<ul>
+<li>
+<p>deploy to production automatically</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>building/packaging</p>
+<div class="ulist">
+<ul>
+<li>
+<p>preparing the code into deployable form</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ruby gem</p>
+</li>
+<li>
+<p>java war/ear</p>
+</li>
+<li>
+<p>c code &#8594; docker image</p>
+</li>
+<li>
+<p>tarball</p>
+</li>
+<li>
+<p>no packaging/building</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>sending/delivering/deploying</p>
+<div class="ulist">
+<ul>
+<li>
+<p>pushing docker image to repository</p>
+</li>
+<li>
+<p>using a cli tool to deploy to AWS environment</p>
+</li>
+<li>
+<p>last (sometimes only) task of CD</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">CI/CD Pipeline can be tool agnostic</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>pipelines ultimately boil down to a series of shell commands</p>
+<div class="ulist">
+<ul>
+<li>
+<p>that run automatically</p>
+</li>
+<li>
+<p>i.e. series of tasks run by a robot that relate to</p>
+<div class="ulist">
+<ul>
+<li>
+<p>building</p>
+</li>
+<li>
+<p>verifying</p>
+</li>
+<li>
+<p>deploying</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview-of-gitlab-ci"><a class="anchor" href="#overview-of-gitlab-ci"></a>Overview of Gitlab CI</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">A Gitlab CI/CD pipeline is a series of steps</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>performed on your files</p>
+</li>
+<li>
+<p>when ever you commit and push source code changes</p>
+</li>
+<li>
+<p>blueprint/recipe</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Steps</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>tasks that are performed on your files</p>
+<div class="ulist">
+<ul>
+<li>
+<p>tests</p>
+</li>
+<li>
+<p>security scans</p>
+</li>
+<li>
+<p>build / packaging</p>
+<div class="ulist">
+<ul>
+<li>
+<p>zip file?</p>
+</li>
+<li>
+<p>linux package?</p>
+</li>
+<li>
+<p>docker container?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>deploy / set up</p>
+<div class="ulist">
+<ul>
+<li>
+<p>test env</p>
+</li>
+<li>
+<p>prod env</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>inspect, test, package, deploy, any manpipulation of files</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Runners</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Runners are robots/daemons/programs that</p>
+<div class="ulist">
+<ul>
+<li>
+<p>take these steps from somewhere (e.g. Github/Gitlab instance)</p>
+</li>
+<li>
+<p>and execute them in an environment</p>
+</li>
+<li>
+<p>where the rubber meets the road</p>
+<div class="ulist">
+<ul>
+<li>
+<p>CI/CD code to actual tasks</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Parts of a pieline</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Stages</p>
+<div class="ulist">
+<ul>
+<li>
+<p>One or more</p>
+</li>
+<li>
+<p>help readibility/maintainibility of pipeline</p>
+</li>
+<li>
+<p>collection of pipeline tasks that are related</p>
+<div class="ulist">
+<ul>
+<li>
+<p>build</p>
+<div class="ulist">
+<ul>
+<li>
+<p>compile</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>package?</p>
+</li>
+<li>
+<p>test</p>
+<div class="ulist">
+<ul>
+<li>
+<p>linting</p>
+</li>
+<li>
+<p>unit tests</p>
+</li>
+<li>
+<p>scans</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>deploy</p>
+<div class="ulist">
+<ul>
+<li>
+<p>package</p>
+</li>
+<li>
+<p>deliver</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>each stage is executed sequentially by default</p>
+<div class="ulist">
+<ul>
+<li>
+<p>one stage after another</p>
+</li>
+<li>
+<p>can be changed using the needs keyword</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Jobs</p>
+<div class="ulist">
+<ul>
+<li>
+<p>equivilant to steps/tasks</p>
+</li>
+<li>
+<p>Each stage contains one more more jobs</p>
+</li>
+<li>
+<p>best practice to have each job do one task</p>
+</li>
+<li>
+<p>all jobs within a stage are executed in parallel by default</p>
+<div class="ulist">
+<ul>
+<li>
+<p>can be changed using the needs keyword</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Commands</p>
+<div class="ulist">
+<ul>
+<li>
+<p>each job contains one or more commands</p>
+</li>
+<li>
+<p>job is the robot/runner take types commands in to a bash shell</p>
+<div class="ulist">
+<ul>
+<li>
+<p>javac *.java</p>
+</li>
+<li>
+<p>docker build --tag my_app:1.2</p>
+</li>
+<li>
+<p>mvn test</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>in the end, running all of the commands of a pipeline manually</p>
+</li>
+<li>
+<p>is the same thing as running the pipeline through a runner</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Running Pipelines</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>automatically</p>
+<div class="ulist">
+<ul>
+<li>
+<p>commit push</p>
+</li>
+<li>
+<p>merge request</p>
+<div class="ulist">
+<ul>
+<li>
+<p>source code of branch of merge request</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>merged result</p>
+<div class="ulist">
+<ul>
+<li>
+<p>pipeline on a temporary merge</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>merge train</p>
+<div class="ulist">
+<ul>
+<li>
+<p>sepearte, concurrent merged result piepeline</p>
+</li>
+<li>
+<p>temp merge of source branches from every merge request that&#8217;s ahead of the current merge request in the queue.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>manually</p>
+<div class="ulist">
+<ul>
+<li>
+<p>branch</p>
+</li>
+<li>
+<p>tag</p>
+</li>
+<li>
+<p>skipping pipelines</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>certain "features" of the single pipeline can be turned on or off,</p>
+<div class="ulist">
+<ul>
+<li>
+<p>depending on which features make sesnse for the type of changes.</p>
+</li>
+<li>
+<p>unit tests on code changes</p>
+</li>
+<li>
+<p>spelling/editing tests on documentation changes</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="karlina-and-it4is-cicd-setup"><a class="anchor" href="#karlina-and-it4is-cicd-setup"></a>Karlina and IT4I&#8217;s CI/CD setup</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Documentation</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.it4i.cz/general/tools/cicd/#execution-of-ci-pipelines-in-docker-containers" class="bare">docs.it4i.cz/general/tools/cicd/#execution-of-ci-pipelines-in-docker-containers</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Gitlab Instance</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>code.it4i.cz</p>
+<div class="ulist">
+<ul>
+<li>
+<p>you should have an account.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Gitlab Runners</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>7 System Runners</p>
+</li>
+<li>
+<p>5 Docker Runners</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Jacamar CI</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>System Runners use a custom executor model called Jacamar CI</p>
+</li>
+<li>
+<p>handles authorisation and downscoping, matching hpc username to Gitlab username</p>
+</li>
+<li>
+<p>interacts directly with SLURM/PBS schedulers</p>
+</li>
+<li>
+<p>documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://ecp-ci.gitlab.io/docs/admin/jacamar/introduction.html" class="bare">ecp-ci.gitlab.io/docs/admin/jacamar/introduction.html</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="a-comparison-of-gitlab-ci-and-github-actions"><a class="anchor" href="#a-comparison-of-gitlab-ci-and-github-actions"></a>A comparison of Gitlab CI and Github Actions</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Similarities</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>both systems base their workflow language on YAML</p>
+</li>
+<li>
+<p>both systems support multiple stages, and work directly on your files in the associated repo.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Differences</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Gitlab CI does not have a comparable marketplace like Github Actions.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>new feature/component under development, available: "Gitlab Steps"</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.gitlab.com/17.9/ci/steps/" class="bare">docs.gitlab.com/17.9/ci/steps/</a></p>
+</li>
+<li>
+<p>official components developed by Gitlab (safe but not so many)</p>
+</li>
+<li>
+<p>support now added to use Github Actions in Gitlab CI. Weird!</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Gitlab has support for custom executers</p>
+<div class="ulist">
+<ul>
+<li>
+<p>JacamarCI</p>
+</li>
+<li>
+<p>a native Kubernetes executer.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>only one pipeline workflow file per project</p>
+</li>
+<li>
+<p>.gitlab-ci.yml</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="what-is-a-github-action"><a class="anchor" href="#what-is-a-github-action"></a>What is a Github Action?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>a container image, in principle.</p>
+</li>
+<li>
+<p>either has an action.yml that calls javascript code.</p>
+</li>
+<li>
+<p>or a Dockerfile that can call anything (python, c, etc)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="gitlab-yaml-syntax"><a class="anchor" href="#gitlab-yaml-syntax"></a>Gitlab YAML syntax</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">documentation</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.gitlab.com/ci/migration/github_actions/#github-actions-workflow-syntax" class="bare">docs.gitlab.com/ci/migration/github_actions/#github-actions-workflow-syntax</a></p>
+</li>
+<li>
+<p><a href="https://docs.github.com/en/actions/migrating-to-github-actions/manually-migrating-to-github-actions/migrating-from-gitlab-cicd-to-github-actions" class="bare">docs.github.com/en/actions/migrating-to-github-actions/manually-migrating-to-github-actions/migrating-from-gitlab-cicd-to-github-actions</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">key differences</dt>
+</dl>
+</div>
+<table class="tableblock frame-none grid-rows stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">GitHub</th>
+<th class="tableblock halign-left valign-top">GitLab</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"on"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no keyword</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"run"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no keyword</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"jobs"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"stages"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"env"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"variables"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"runs-on"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"tags"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"steps"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"script"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"uses"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"inculde"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"container"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"image"</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>no "on" keyword</p>
+</li>
+<li>
+<p>no "run" keyword</p>
+</li>
+<li>
+<p>upload-artifact and download-artifact replaced with "artifcats"</p>
+</li>
+<li>
+<p>secrets management</p>
+<div class="ulist">
+<ul>
+<li>
+<p>github has integrated secrets management</p>
+</li>
+<li>
+<p>gitlab encourages 3rd party tools (like Vault)</p>
+</li>
+<li>
+<p>or have to use masked and protected ci/cd variables</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr" style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+
+
+<script async src="../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
