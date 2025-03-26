@@ -5,6 +5,9 @@
 *** xref:course-project:containers:hpc/cicd.adoc[CI/CD]
 *** xref:course-project:containers:hpc/advanced.adoc[CICD Advanced Topics]
 *** xref:benchmarking:training:index.adoc[Benchmarking]
+*** xref:course-project:cicd:gitlab.adoc[CI/CD with GitLab]
+
+
 
 ** Q&A, Recap
 *** xref:course-project:containers:hpc/best-practices.adoc[Best Practices]
@@ -18,3 +21,4 @@
 *** xref:course-project:containers:hpc/hands-on/04-docker-cicd-app.adoc[CI/CD Docker Job]
 *** xref:course-project:containers:hpc/hands-on/04-apptainer-cicd-app.adoc[CI/CD Apptainer Job]
 *** xref:course-project:containers:hpc/hands-on/05-deploy.adoc[Deploy with Apptainer]
+*** xref:course-project:cicd:gitlab_handson.adoc[Hands on with GitLab]
