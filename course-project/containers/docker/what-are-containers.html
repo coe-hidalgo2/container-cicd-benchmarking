@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>What are Containers? :: Containers CI/CD and Benchmarking Training</title>
+    <link rel="canonical" href="https://coe-hidalgo2.github.io/course-project/containers/docker/what-are-containers.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="docker-install.html">
+    <meta name="description" content="Understand what containers are and why they matter for mathematical computing and scientific research.">
+    <meta name="generator" content="Antora 3.1.10">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+<script>!function(l,p){if(l.protocol!==p&&l.host=="docs.antora.org"){l.protocol=p}else if(/\.gitlab\.io$/.test(l.host)){l.replace(p+"//docs.antora.org"+l.pathname.substr(l.pathname.indexOf("/",1))+l.search+l.hash)}}(location,"https:")</script>
+
+<script src="../../../_/js/vendor/tabs-block-extension.js"></script>
+<script src="../../../_/js/vendor/tabs-block-behavior.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\\[','\\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+
+  TeX: {
+      Macros: {
+      bold: ["{\\bf #1}",1],
+      calTh: "{\\mathcal{T}_h}",
+      card: ["{\\operatorname{card}(#1)}",1],
+      card: ["{\\operatorname{card}(#1)}",1],
+      Ck: ["{\\mathcal{C}^{#1}}",1],
+      deformt: ["{\\mathbf{\\varepsilon(#1)}}",1],
+      diam: "{\\operatorname{diam}}",
+      dim: ["{\\operatorname{dim}(#1)}",1],
+      disp: ["{\\mathbf{#1}}",1],
+      domain: "{\\Omega}",
+      ds: "",
+      essinf: "{\\operatorname{ess}\\, \\operatorname{inf}}",
+      F:"{\\mathcal{F}}",
+      geo: "{\\mathrm{geo}}",
+      Ich: ["{\\mathcal{I}^{#1}_{c,h}#2}",2],
+      Id: "{\\mathcal{I}}",
+      Ilag: ["{\\mathcal{I}^{\\mathrm{lag}}_{#1}}",1],
+      jump: ["{[\\![ #1 ]\\!]}",1],
+      n:"{\\mathbf{n}}",
+      Ne: "{N_{\\mathrm{e}}}",
+      Next: "{\\mathrm{n}}",
+      nf: "{n_f}",
+      ngeo: "{n_{\\mathrm{geo}}}",
+      Nma: "{N_{\\mathrm{ma}}}",
+      NN: "{\\mathbb N}",
+      Nno: "{N_{\\mathrm{no}}}",
+      Nso: "{N_{\\mathrm{so}}}",
+      opdim: "{\\operatorname{dim}}",
+      p: "{\\mathrm{p}}",
+      P:"{\\mathcal{P}}",
+      Pch: ["{P^{#1}_{c,h}}",1],
+      Pcho: ["{P^{#1}_{c,h,0}}",1],
+      Pk: ["{\\mathcal{P}^{#1}}",1],
+      poly: ["{\\mathbb{#1}",1],
+      poly: ["{\\mathbb{#1}}",1],
+      prect: ["{\\left\\(#1\\right\\)}",1],
+      q:"{\\mathbf{q}}",
+      Qch: ["{Q^{#1}_{c,h}}",1],
+      Qk: ["{\\mathcal{Q}^{#1}}",1],
+      R: ["{\\mathbb{R}^{#1}}",1],
+      RR: "{\\mathbb R}",
+      set: ["{\\left\\{#1\\right\\}}",1],
+      stresst: ["{\\mathbf{\\sigma(#1)}}",1],
+      T:"{\\mathcal{T}}",
+      tr: "{\\operatorname{tr}}",
+      v:"{\\mathbf{v}}",
+      vertiii: ["\\left\\vert\\kern-0.25ex\\left\\vert\\kern-0.25ex\\left\\vert #1 \\right\\vert\\kern-0.25ex\\right\\vert\\kern-0.25ex\\right\\vert",1]
+  },
+  extensions: ["mhchem.js"] 
+  }
+});
+</script>
+<!--<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML'></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>-->
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>-->
+<script>var uiRootPath = '../../../_'</script>
+
+  </head>
+  <body class="article">
+<header class="header">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
+        <div class="navbar-brand">
+            <div class="navbar-item feelpp-logo">
+            <a href="https://hidalgo2.eu"><img class="cemosis-logo" src="../../../_/img/logo-hidalgo2-color.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://eurohpc-ju.europa.eu/"><img class="cemosis-logo" src="../../../_/img/logo-eurohpc-ju.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://numpex.org/"><img class="cemosis-logo" src="../../../_/img/logo-numpex.png" alt="Containers CI/CD and Benchmarking Training"></a>            
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.economie.gouv.fr/france-2030"><img class="cemosis-logo" src="../../../_/img/logo-france-2030.jpg" alt="Containers CI/CD and Benchmarking Training"></a>
+            </div>  
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a href="https://docs.feelpp.org/">Documentation Reference</a>
+                </div>
+                <div class="navbar-item">
+                    <a class="navbar-brand"  href="https://www.cemosis.fr">
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../../_/img/logo-unistra.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://coe-hidalgo2.github.io"><img class="cemosis-logo" src="../../../_/img/logo-cnrs.svg"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img class="cemosis-logo"  src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="body">
+<a href="#" class="menu-expand-toggle"></a>
+<div class="nav-container" data-component="course-project" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Course Project</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../index.html">🏠 Course Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../quick-start.html">🚀 Quick Start Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../prerequisites.html">📋 Prerequisites &amp; Self-Assessment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../instructor-guide.html">📚 Instructor Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../linux/index.html">Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/shell.html">Shell Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/files.html">File Operations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/editing.html">File Editing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/text-processing.html">Text Processing</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Remote Computing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/ssh/index.html">SSH Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/ssh/ssh-setup.html">SSH Setup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/ssh/ssh-commands.html">SSH Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../linux/ssh/remote-ssh-vscode.html">VS Code Remote-SSH</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../git-github/index.html">Git &amp; GitHub</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Git Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-starter.html">Git Starter Guide</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-repository-basics.html">Repository Basics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 GitHub Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-essentials.html">GitHub Essentials</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-start.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-how-to-write-issues.html">Writing Issues</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Collaboration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-branch.html">Git Branching</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-merges.html">Merging &amp; Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/git-remotes.html">Git Remotes</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-collaborations.html">GitHub Collaboration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Automation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-actions.html">GitHub Actions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../git-github/github-actions-cmake-eigen3.html">CMake + Eigen3 Example</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../vscode/index.html">VS Code</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟢 Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/install.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/basic-usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/configure-vscode.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../vscode/cheatsheet.html">Cheat Sheet</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../jupyter.html">Jupyter Notebooks</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Containers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Docker Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="index.html">Docker Introduction</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="what-are-containers.html">What are Containers?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-install.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-commands.html">Essential Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="dockerfile-basics.html">Dockerfile Basics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/04-compose.html">Docker Compose</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="hands-on/06-githubactions.html">Docker + GitHub Actions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 HPC Containers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../hpc/index.html">HPC Containerization</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../apptainer/index.html">Apptainer/Singularity</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../apptainer/tutorial.html">Apptainer Tutorial</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../hpc/cicd.html">CI/CD for HPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../hpc/best-practices.html">HPC Best Practices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../project-management/index.html">Project Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Fundamentals</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/introduction.html">What is a Project?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/project-phases.html">Project Phases</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/practical-examples.html">Practical Examples</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🟡 Tools &amp; Methods</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/tools-gantt.html">Tools &amp; Gantt Charts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/agile-best-practices.html">Agile Practices</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/github.html">GitHub for PM</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../project-management/case-studies.html">Case Studies</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../cicd/index.html">CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Platforms</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../cicd/gitlab.html">GitLab CI/CD</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../cicd/gitlab_handson.html">GitLab Hands-on</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../software/index.html">Software Distribution</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Topics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../software/package-managers.html">Package Managers</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../software/repo/organization.html">Repository Organization</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../visualisation/index.html">Visualization</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">🔴 Web Dashboards</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../visualisation/dash.html">Dash Tutorial</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Course Project</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+      <li class="component is-current">
+        <a class="title" href="../../index.html">Course Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../../benchmarking/index.html">The Feel++ Benchmarking Project</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../../../training-containers-cicd-benchmarking/index.html">Training Containers CI/CD and Benchmarking</a>
+      </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+    <a href="../../../training-containers-cicd-benchmarking/training-202503-karolina/index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Course Project</a></li>
+    <li><a href="../index.html">Containers</a></li>
+    <li>🟡 Docker Fundamentals</li>
+    <li><a href="what-are-containers.html">What are Containers?</a></li>
+  </ul>
+</nav>
+
+  
+    <div class="edit-this-page"><a href="https://github.com/feelpp/course-project/edit/master/docs/modules/containers/pages/docker/what-are-containers.adoc">Edit this Page</a></div>
+  
+  <div class="page-downloads">
+  <span class="label">Download as</span>
+  <ul class="download-options">
+    <li>
+      <a onclick="print(this)" href="#" data-toggle="tooltip" data-placement="left" title="Print to PDF"
+         class="pdf-download">
+        <img class="pdf-file-icon icon" src="../../../_/img/pdf.svg"/> .pdf
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">What are Containers?</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="exampleblock level-indicator bg-warning text-white p-3 rounded mb-4">
+<div class="content">
+<div class="paragraph">
+<p><strong>🟡 LEVEL 2</strong> | <strong>Time:</strong> 20 minutes | <strong>Prerequisites:</strong> Basic Linux knowledge</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-problem-it-works-on-my-machine"><a class="anchor" href="#the-problem-it-works-on-my-machine"></a>The Problem: "It Works on My Machine"</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As a mathematics student, you&#8217;ve likely encountered this scenario:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+You develop a numerical simulation in Python with NumPy, SciPy, and matplotlib. It runs perfectly on your laptop. You share your code with your advisor or submit it for a paper&#8230;&#8203; and it fails.
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Why? Different library versions, missing dependencies, or different operating system configurations.</p>
+</div>
+<div class="paragraph">
+<p><strong>Containers solve this problem.</strong></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what-is-a-container"><a class="anchor" href="#what-is-a-container"></a>What is a Container?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A container is a <strong>lightweight, standalone package</strong> that includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your application code</p>
+</li>
+<li>
+<p>All dependencies and libraries</p>
+</li>
+<li>
+<p>Configuration files</p>
+</li>
+<li>
+<p>Runtime environment</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-none grid-rows stretch cards grid-2">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card">
+<div class="content">
+<div class="paragraph">
+<p><strong>📦 Think of it like&#8230;&#8203;</strong></p>
+</div>
+<div class="paragraph">
+<p>A shipping container. Just as a shipping container can hold any cargo and be transported on any ship, truck, or train, a software container holds your application and can run on any computer with Docker installed.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="exampleblock card">
+<div class="content">
+<div class="paragraph">
+<p><strong>🔬 For Mathematics&#8230;&#8203;</strong></p>
+</div>
+<div class="paragraph">
+<p>Package your entire computational environment:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Python 3.11 + NumPy 1.24.0 + SciPy 1.10.0</p>
+</li>
+<li>
+<p>Your mathematical algorithms</p>
+</li>
+<li>
+<p>Test data and configuration</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Share it with anyone, anywhere.</p>
+</div>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="containers-vs-virtual-machines"><a class="anchor" href="#containers-vs-virtual-machines"></a>Containers vs. Virtual Machines</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect</th>
+<th class="tableblock halign-left valign-top">Virtual Machine</th>
+<th class="tableblock halign-left valign-top">Container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Size</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gigabytes (includes full OS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Megabytes (shares host OS kernel)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Startup Time</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minutes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seconds</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Resource Usage</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Heavy (full OS per VM)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Light (shared kernel)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Isolation</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Complete (hardware-level)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Process-level</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Portability</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Limited</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excellent</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use Case</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Different OS needed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Same OS, isolated apps</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/docker/containers-vs-vms.png" alt="Containers vs VMs" width="600">
+</div>
+<div class="title">Figure 1. Visual Comparison</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="why-containers-for-scientific-computing"><a class="anchor" href="#why-containers-for-scientific-computing"></a>Why Containers for Scientific Computing?</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="1-reproducible-research"><a class="anchor" href="#1-reproducible-research"></a>1. Reproducible Research</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Paper from 2020: "Our simulation uses Python 3.8, NumPy 1.19, custom library v2.3"
+
+Without containers: Good luck recreating that exact environment!
+With containers: docker pull myresearch/simulation:paper-2020 ✓</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="2-dependency-management"><a class="anchor" href="#2-dependency-management"></a>2. Dependency Management</h3>
+<div class="paragraph">
+<p>Mathematical software often has complex dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Your numerical analysis project needs:
+├── Python 3.11
+├── NumPy 1.24.0 (requires specific BLAS)
+├── SciPy 1.10.0 (must match NumPy version)
+├── matplotlib 3.7.0
+├── Your custom library
+└── Specific compiler flags for performance</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Containers capture ALL of this.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="3-collaboration"><a class="anchor" href="#3-collaboration"></a>3. Collaboration</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Your advisor can run your exact environment:
+docker pull ghcr.io/yourusername/thesis-simulation:latest
+docker run thesis-simulation python run_experiment.py</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="4-hpc-portability"><a class="anchor" href="#4-hpc-portability"></a>4. HPC Portability</h3>
+<div class="paragraph">
+<p>Run the same container on:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your laptop (development)</p>
+</li>
+<li>
+<p>University cluster (testing)</p>
+</li>
+<li>
+<p>National HPC center (production)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="key-concepts"><a class="anchor" href="#key-concepts"></a>Key Concepts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="images-vs-containers"><a class="anchor" href="#images-vs-containers"></a>Images vs. Containers</h3>
+<table class="tableblock frame-none grid-rows stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Image</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Container</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Blueprint/template</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Running instance</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-only</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-write layer on top</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stored on disk</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Running in memory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Like a class in OOP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Like an object/instance</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># Image: the template
+docker pull python:3.11
+
+# Container: running instance of the image
+docker run python:3.11 python -c "print('Hello, Math!')"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="layers-and-efficiency"><a class="anchor" href="#layers-and-efficiency"></a>Layers and Efficiency</h3>
+<div class="paragraph">
+<p>Docker images are built in <strong>layers</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Layer 4: Your Python script (2 KB)        ← Changes frequently
+Layer 3: pip install numpy scipy (200 MB) ← Changes sometimes
+Layer 2: Python 3.11 (100 MB)             ← Rarely changes
+Layer 1: Ubuntu base (50 MB)              ← Almost never changes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Only changed layers are rebuilt/downloaded, making updates fast.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docker-and-oci-standards"><a class="anchor" href="#docker-and-oci-standards"></a>Docker and OCI Standards</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Docker popularized containers, but the technology is now standardized:</p>
+</div>
+<div class="paragraph">
+<p><strong>OCI (Open Container Initiative)</strong> defines:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Image format</strong>: How container images are structured</p>
+</li>
+<li>
+<p><strong>Runtime specification</strong>: How containers execute</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This means Docker images work with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Docker</p>
+</li>
+<li>
+<p>Podman</p>
+</li>
+<li>
+<p>containerd</p>
+</li>
+<li>
+<p>Apptainer/Singularity (for HPC)</p>
+</li>
+</ul>
+</div>
+<div class="openblock callout tip">
+<div class="content">
+<div class="paragraph">
+<p><strong>For master students</strong>: Understanding that Docker follows OCI standards means your containerized research is portable across different container runtimes - especially important when moving from Docker (development) to Apptainer (HPC clusters).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="anchor" href="#summary"></a>Summary</h2>
+<div class="sectionbody">
+<table class="tableblock frame-none grid-rows stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Concept</th>
+<th class="tableblock halign-left valign-top">Key Point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lightweight package with app + dependencies</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read-only template for creating containers</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vs. VM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Containers share OS kernel, faster and lighter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OCI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open standards ensure portability</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For Math</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reproducible research, easy collaboration</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#docker-install.adoc" class="xref unresolved">Install Docker</a> on your machine</p>
+</li>
+<li>
+<p><a href="#hands-on/01-getting-started.adoc" class="xref unresolved">Run your first container</a></p>
+</li>
+<li>
+<p>Learn <a href="#dockerfile-basics.adoc" class="xref unresolved">how to build images with Dockerfile</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Docker Introduction</a></span>
+  <span class="next"><a href="docker-install.html">Installation</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="border-top: 2px solid #e9e9e9; background-color: #fafafa; padding-bottom: 2em; padding-top: 2em;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+        <div>
+            <a href="https://www.cemosis.fr">
+                <img src="../../../_/img/cemosis-logo.svg" alt="Cemosis logo" height="50">
+            </a>
+        </div>
+        <span style="font-size: 0.8rem; color: #9e9e9e">© 2025 <a href="https://www.cemosis.fr" style="text-decoration: underline;">Cemosis</a>, Université de Strasbourg</span>
+    </div>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+
+
+<script async src="../../../_/js/vendor/fontawesome-icon-defs.js"></script>
+<script async src="../../../_/js/vendor/fontawesome.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+
+
+<script type="text/javascript">
+function toggleFullScreen() {
+   var doc = window.document;
+   var docEl = doc.documentElement;
+
+   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+   var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+       requestFullScreen.call(docEl);
+   }
+   else {
+       cancelFullScreen.call(doc);
+   }
+}
+</script>
+  </body>
+</html>
